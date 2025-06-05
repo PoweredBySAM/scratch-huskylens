@@ -1,5 +1,5 @@
-import BlockType from '../../extension-support/block-type';
-import ArgumentType from '../../extension-support/argument-type';
+// import BlockType from '../../extension-support/block-type';
+// import ArgumentType from '../../extension-support/argument-type';
 import translations from './translations.json';
 
 /**
@@ -26,7 +26,7 @@ const setupTranslations = () => {
 const EXTENSION_ID = 'huskylens';
 
 /**
- * Scratch 3.0 blocks for example of Xcratch.
+ * Scratch 3.0 blocks
  */
 class ExtensionBlocks {
     /**
@@ -59,19 +59,7 @@ class ExtensionBlocks {
      * URL to get this extension.
      * @type {string}
      */
-    static get extensionURL () {
-        return "";
-    }
-
-    /**
-     * Set URL to get this extension.
-     * The extensionURL will be changed to the URL of the loading server.
-     * @param {string} url - URL
-     */
-    static set extensionURL (url) {
-        extensionURL = url;
-    }
-
+    extensionURL = '';
     /**
      * Construct a set of blocks for SAM Labs.
      * @param {Runtime} runtime - the Scratch 3.0 runtime.

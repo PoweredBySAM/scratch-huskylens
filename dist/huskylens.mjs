@@ -93,6 +93,15 @@ function _createClass(e, r, t) {
   }), e;
 }
 
+function _defineProperty(e, r, t) {
+  return (r = toPropertyKey(r)) in e ? Object.defineProperty(e, r, {
+    value: t,
+    enumerable: true,
+    configurable: true,
+    writable: true
+  }) : e[r] = t, e;
+}
+
 var en = {
 	"huskylens.name": "HuskyLens"
 };
@@ -122,7 +131,7 @@ var setupTranslations = function setupTranslations() {
 var EXTENSION_ID = 'huskylens';
 
 /**
- * Scratch 3.0 blocks for example of Xcratch.
+ * Scratch 3.0 blocks
  */
 var ExtensionBlocks = /*#__PURE__*/function () {
   /**
@@ -131,6 +140,11 @@ var ExtensionBlocks = /*#__PURE__*/function () {
    */
   function ExtensionBlocks(runtime) {
     _classCallCheck(this, ExtensionBlocks);
+    /**
+     * URL to get this extension.
+     * @type {string}
+     */
+    _defineProperty(this, "extensionURL", '');
     /**
      * The Scratch 3.0 runtime.
      * @type {Runtime}
@@ -192,25 +206,6 @@ var ExtensionBlocks = /*#__PURE__*/function () {
     key: "EXTENSION_ID",
     get: function get() {
       return EXTENSION_ID;
-    }
-
-    /**
-     * URL to get this extension.
-     * @type {string}
-     */
-  }, {
-    key: "extensionURL",
-    get: function get() {
-      return "";
-    }
-
-    /**
-     * Set URL to get this extension.
-     * The extensionURL will be changed to the URL of the loading server.
-     * @param {string} url - URL
-     */,
-    set: function set(url) {
-      extensionURL = url;
     }
   }]);
 }();
