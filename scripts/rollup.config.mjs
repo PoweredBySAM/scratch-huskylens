@@ -16,9 +16,8 @@ const blockFile = path.resolve(blockSrcDir, 'huskylens.js');
 const entrySrcDir = path.resolve(process.cwd(), './src/gui/lib/libraries/extensions/entry');
 const entryFile = path.resolve(entrySrcDir, 'huskylens.jsx');
 // path for output
-const moduleName = 'samlahuskylensbs';
+const moduleName = 'huskylens';
 const outputDir = path.resolve(process.cwd(), './dist');
-fs.emptyDirSync(outputDir);
 const moduleFile = path.resolve(outputDir, `${moduleName}.mjs`);
 
 const rollupOptions = [
