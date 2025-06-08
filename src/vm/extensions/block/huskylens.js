@@ -113,7 +113,7 @@ class ExtensionBlocks extends HuskylensProtocol {
                     }),
                     arguments: {
                         algorithm: {
-                            type: ArgumentType.NUMBER,
+                            type: ArgumentType.STRING,
                             menu: 'algorithmMenu',
                             defaultValue: protocolAlgorithm.ALGORITHM_OBJECT_TRACKING
                         }
@@ -125,39 +125,39 @@ class ExtensionBlocks extends HuskylensProtocol {
                     items: [
                         {
                             text: 'face recognition',
-                            value: protocolAlgorithm.ALGORITHM_FACE_RECOGNITION
+                            value: protocolAlgorithm.ALGORITHM_FACE_RECOGNITION.toString()
                         },
                         {
                             text: 'object tracking',
-                            value: protocolAlgorithm.ALGORITHM_OBJECT_TRACKING
+                            value: protocolAlgorithm.ALGORITHM_OBJECT_TRACKING.toString()
                         },
                         {
                             text: 'object recognition',
-                            value: protocolAlgorithm.ALGORITHM_OBJECT_RECOGNITION
+                            value: protocolAlgorithm.ALGORITHM_OBJECT_RECOGNITION.toString()
                         },
                         {
                             text: 'line tracking',
-                            value: protocolAlgorithm.ALGORITHM_LINE_TRACKING
+                            value: protocolAlgorithm.ALGORITHM_LINE_TRACKING.toString()
                         },
                         {
                             text: 'color recognition',
-                            value: protocolAlgorithm.ALGORITHM_COLOR_RECOGNITION
+                            value: protocolAlgorithm.ALGORITHM_COLOR_RECOGNITION.toString()
                         },
                         {
                             text: 'tag recognition',
-                            value: protocolAlgorithm.ALGORITHM_TAG_RECOGNITION
+                            value: protocolAlgorithm.ALGORITHM_TAG_RECOGNITION.toString()
                         },
                         {
                             text: 'object classification',
-                            value: protocolAlgorithm.OBJECTCLASSIFICATION
+                            value: protocolAlgorithm.OBJECTCLASSIFICATION.toString()
                         },
                         {
                             text: 'QR Recogmition (EDU only)',
-                            value: protocolAlgorithm.QRRECOGMITION
+                            value: protocolAlgorithm.QRRECOGMITION.toString()
                         },
                         {
                             text: 'Barcode Recognition (EDU only)',
-                            value: protocolAlgorithm.BARCODERECOGNITION
+                            value: protocolAlgorithm.BARCODERECOGNITION.toString()
                         }
                     ]
                 }
@@ -166,7 +166,7 @@ class ExtensionBlocks extends HuskylensProtocol {
     }
 
     selectAlgorithm (args) {
-        this.initMode(args.algorithm);
+        this.initMode(Number(args.algorithm));
     }
 
     

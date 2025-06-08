@@ -203,6 +203,9 @@ export class HuskylensProtocol {
      * HuskyLens init I2C until success
      */
     initI2c(): void {
+        if (!this.mbitMore.isConnected()) {
+            return;
+        }
         while (!this.readKnock());
     }
 
@@ -210,6 +213,9 @@ export class HuskylensProtocol {
      * HuskyLens change mode algorithm until success.
      */
     async initMode(mode: protocolAlgorithm) {
+        if (!this.mbitMore.isConnected()) {
+            return;
+        }
         this.writeAlgorithm(mode, protocolCommand.COMMAND_REQUEST_ALGORITHM);
         while (!await this.wait(protocolCommand.COMMAND_RETURN_OK));
     }
@@ -220,6 +226,9 @@ export class HuskylensProtocol {
     //% block="HuskyLens request data once and save into the result"
     //% weight=80
     request(): void {
+        if (!this.mbitMore.isConnected()) {
+            return;
+        }
         this.protocolWriteCommand(protocolCommand.COMMAND_REQUEST);
         this.processReturn();
     }
@@ -229,6 +238,9 @@ export class HuskylensProtocol {
     //%block="HuskyLens get a total number of learned IDs from the result"
     //% weight=79
     getIds(): number {
+        if (!this.mbitMore.isConnected()) {
+            return 0;
+        }
         return this.Protocol_t[2];
     }
     /**
@@ -237,6 +249,9 @@ export class HuskylensProtocol {
     //%block="HuskyLens check if %Ht is on screen from the result"
     //% weight=78
     isAppear_s(Ht: HUSKYLENSResultType_t): boolean {
+        if (!this.mbitMore.isConnected()) {
+            return false;
+        }
         switch (Ht) {
             case 1:
                 return this.countBlocks_s() != 0 ? true : false;
@@ -252,6 +267,9 @@ export class HuskylensProtocol {
     //% block="HuskyLens get %data of frame closest to the center of screen from the result"
     //% weight=77
     readBox_s(data: Content3): number {
+        if (!this.mbitMore.isConnected()) {
+            return 0;
+        }
         let hk_x
         let hk_y = this.readBlockCenterParameterDirect();
         if (hk_y != -1) {
@@ -277,6 +295,9 @@ export class HuskylensProtocol {
     //% block="HuskyLens get %data of arrow closest to the center of screen from the result"
     //% weight=77
     readArrow_s(data: Content4): number {
+        if (!this.mbitMore.isConnected()) {
+            return 0;
+        }
         let hk_x
         let hk_y = this.readArrowCenterParameterDirect()
         if (hk_y != -1) {
@@ -302,6 +323,9 @@ export class HuskylensProtocol {
     //% block="HuskyLens check if ID %id is learned from the result"
     //% weight=76
     isLearned(id: number): boolean {
+        if (!this.mbitMore.isConnected()) {
+            return false;
+        }
         let hk_x = this.countLearnedIDs();
         if (id <= hk_x) return true;
         return false;
@@ -313,6 +337,9 @@ export class HuskylensProtocol {
     //% block="HuskyLens check if ID %id %Ht is on screen from the result"
     //% weight=75
     isAppear(id: number, Ht: HUSKYLENSResultType_t): boolean {
+        if (!this.mbitMore.isConnected()) {
+            return false;
+        }
         switch (Ht) {
             case 1:
                 return this.countBlocks(id) != 0 ? true : false;
@@ -329,6 +356,9 @@ export class HuskylensProtocol {
     //%block="HuskyLens get  $number1 of ID $id frame from the result"
     //% weight=65
     readeBox(id: number, number1: Content1): number {
+        if (!this.mbitMore.isConnected()) {
+            return 0;
+        }
         let hk_y = this.cycle_block(id, 1);
         let hk_x = null;
         if (this.countBlocks(id) != 0) {
@@ -357,6 +387,9 @@ export class HuskylensProtocol {
     //%block="HuskyLens get $number1 of ID $id arrow from the result"
     //% weight=60
     readeArrow(id: number, number1: Content2): number {
+        if (!this.mbitMore.isConnected()) {
+            return 0;
+        }
         let hk_y = this.cycle_arrow(id, 1);
         let hk_x
         if (this.countArrows(id) != 0) {
@@ -388,6 +421,9 @@ export class HuskylensProtocol {
     //% weight=90
     //% advanced=true
     getBox(Ht: HUSKYLENSResultType_t): number {
+        if (!this.mbitMore.isConnected()) {
+            return 0;
+        }
         switch (Ht) {
             case 1:
                 return this.countBlocks_s();
@@ -405,6 +441,9 @@ export class HuskylensProtocol {
     //% weight=60
     //% advanced=true
     readBox_ss(index: number, data: Content3): number {
+        if (!this.mbitMore.isConnected()) {
+            return 0;
+        }
         let hk_x = -1
         let hk_i = index - 1
         if (this.protocolPtr[hk_i][0] == protocolCommand.COMMAND_RETURN_BLOCK) {
@@ -432,6 +471,9 @@ export class HuskylensProtocol {
     //% weight=60
     //% advanced=true
     readArrow_ss(index: number, data: Content4): number {
+        if (!this.mbitMore.isConnected()) {
+            return 0;
+        }
         let hk_x
         let hk_i = index - 1
         if (this.protocolPtr[hk_i][0] == protocolCommand.COMMAND_RETURN_ARROW) {
@@ -459,6 +501,9 @@ export class HuskylensProtocol {
     //% weight=55
     //% advanced=true
     getBox_S(id: number, Ht: HUSKYLENSResultType_t): number {
+        if (!this.mbitMore.isConnected()) {
+            return 0;
+        }
         switch (Ht) {
             case 1:
                 return this.countBlocks(id);
@@ -477,6 +522,9 @@ export class HuskylensProtocol {
     //% weight=45
     //% advanced=true
     readeBox_index(id: number, index: number, number1: Content1): number {
+        if (!this.mbitMore.isConnected()) {
+            return 0;
+        }
         let hk_y = this.cycle_block(id, index);
         let hk_x
         if (this.countBlocks(id) != 0) {
@@ -508,6 +556,9 @@ export class HuskylensProtocol {
     //% weight=35
     //% advanced=true
     readeArrow_index(id: number, index: number, number1: Content2): number {
+        if (!this.mbitMore.isConnected()) {
+            return 0;
+        }
         let hk_y = this.cycle_arrow(id, index);
         let hk_x
         if (this.countArrows(id) != 0) {
@@ -538,6 +589,9 @@ export class HuskylensProtocol {
     //% weight=30
     //% advanced=true
     writeLearn1(id: number): void {
+        if (!this.mbitMore.isConnected()) {
+            return;
+        }
         this.writeAlgorithm(id, 0X36)
         //while(!await wait(protocolCommand.COMMAND_RETURN_OK));
     }
@@ -548,6 +602,9 @@ export class HuskylensProtocol {
     //% weight=29
     //% advanced=true
     forgetLearn(): void {
+        if (!this.mbitMore.isConnected()) {
+            return;
+        }
         this.writeAlgorithm(0x47, 0X37)
         //while(!await wait(protocolCommand.COMMAND_RETURN_OK));
     }
@@ -560,6 +617,9 @@ export class HuskylensProtocol {
     //% weight=28
     //% advanced=true
     writeName(id: number, name: string): void {
+        if (!this.mbitMore.isConnected()) {
+            return;
+        }
         //do{
         let newname = name;
         let buffer = this.husky_lens_protocol_write_begin(0x2f);
@@ -589,6 +649,9 @@ export class HuskylensProtocol {
     //% x.min=0 x.max=319
     //% y.min=0 y.max=210
     writeOSD(name: string, x: number, y: number): void {
+        if (!this.mbitMore.isConnected()) {
+            return;
+        }
         //do{
         let buffer = this.husky_lens_protocol_write_begin(0x34);
         this.send_buffer[this.send_index] = name.length;
@@ -618,6 +681,9 @@ export class HuskylensProtocol {
     //% weight=26
     //% advanced=true
     clearOSD(): void {
+        if (!this.mbitMore.isConnected()) {
+            return;
+        }
         this.writeAlgorithm(0x45, 0X35);
         //while(!await wait(protocolCommand.COMMAND_RETURN_OK));
     }
@@ -628,6 +694,9 @@ export class HuskylensProtocol {
     //% weight=25
     //% advanced=true
     async takePhotoToSDCard(request: HUSKYLENSphoto): Promise<void> {
+        if (!this.mbitMore.isConnected()) {
+            return;
+        }
         switch (request) {
             case HUSKYLENSphoto.PHOTO:
                 this.writeAlgorithm(0x40, 0X30)
@@ -653,6 +722,9 @@ export class HuskylensProtocol {
     //% advanced=true
     //% data.min=0 data.max=5
     async saveModelToTFCard(command: HUSKYLENSMode, data: number): Promise<void> {
+        if (!this.mbitMore.isConnected()) {
+            return;
+        }
         switch (command) {
             case HUSKYLENSMode.SAVE:
                 this.writeAlgorithm(data, 0x32);
@@ -799,7 +871,6 @@ export class HuskylensProtocol {
             check();
         });
         let buf = this.readBuf;
-        console.log("Read:", buf);
         for (let i = this.m_i; i < 16; i++) {
             if (this.husky_lens_protocol_receive(buf[i])) {
                 this.m_i++;
@@ -1070,12 +1141,12 @@ export class HuskylensProtocol {
             return this.mbitMore._ble.startNotifications(
                 MM_SERVICE.ID,
                 MM_SERVICE.STATUS_CH,
-                this.onNotifyStatus
+                this.onNotifyStatus.bind(this)
             ).then(() => {
                 return this.mbitMore._ble.startNotifications(
                     MM_SERVICE.ID,
                     MM_SERVICE.READ_CH,
-                    this.onNotifyRead
+                    this.onNotifyRead.bind(this)
                 );
             }).then(() => {
                 this.connected = true;
@@ -1119,7 +1190,6 @@ export class HuskylensProtocol {
                 console.error('BLE write failed:', err);
                 this.mbitMore._ble.handleDisconnectError(err);
             }).finally(() => {
-                console.log('written:', command);
                 window.clearTimeout(this.mbitMore.bleBusyTimeoutID);
                 this.mbitMore.bleBusy = false;
                 this.mbitMore.bleAccessWaiting = false;

@@ -606,6 +606,9 @@ class HuskylensProtocol {
      * HuskyLens init I2C until success
      */
     initI2c() {
+        if (!this.mbitMore.isConnected()) {
+            return;
+        }
         while (!this.readKnock())
             ;
     }
@@ -613,6 +616,9 @@ class HuskylensProtocol {
      * HuskyLens change mode algorithm until success.
      */
     async initMode(mode) {
+        if (!this.mbitMore.isConnected()) {
+            return;
+        }
         this.writeAlgorithm(mode, protocolCommand.COMMAND_REQUEST_ALGORITHM);
         while (!await this.wait(protocolCommand.COMMAND_RETURN_OK))
             ;
@@ -623,6 +629,9 @@ class HuskylensProtocol {
     //% block="HuskyLens request data once and save into the result"
     //% weight=80
     request() {
+        if (!this.mbitMore.isConnected()) {
+            return;
+        }
         this.protocolWriteCommand(protocolCommand.COMMAND_REQUEST);
         this.processReturn();
     }
@@ -632,6 +641,9 @@ class HuskylensProtocol {
     //%block="HuskyLens get a total number of learned IDs from the result"
     //% weight=79
     getIds() {
+        if (!this.mbitMore.isConnected()) {
+            return 0;
+        }
         return this.Protocol_t[2];
     }
     /**
@@ -640,6 +652,9 @@ class HuskylensProtocol {
     //%block="HuskyLens check if %Ht is on screen from the result"
     //% weight=78
     isAppear_s(Ht) {
+        if (!this.mbitMore.isConnected()) {
+            return false;
+        }
         switch (Ht) {
             case 1:
                 return this.countBlocks_s() != 0 ? true : false;
@@ -655,6 +670,9 @@ class HuskylensProtocol {
     //% block="HuskyLens get %data of frame closest to the center of screen from the result"
     //% weight=77
     readBox_s(data) {
+        if (!this.mbitMore.isConnected()) {
+            return 0;
+        }
         let hk_x;
         let hk_y = this.readBlockCenterParameterDirect();
         if (hk_y != -1) {
@@ -685,6 +703,9 @@ class HuskylensProtocol {
     //% block="HuskyLens get %data of arrow closest to the center of screen from the result"
     //% weight=77
     readArrow_s(data) {
+        if (!this.mbitMore.isConnected()) {
+            return 0;
+        }
         let hk_x;
         let hk_y = this.readArrowCenterParameterDirect();
         if (hk_y != -1) {
@@ -716,6 +737,9 @@ class HuskylensProtocol {
     //% block="HuskyLens check if ID %id is learned from the result"
     //% weight=76
     isLearned(id) {
+        if (!this.mbitMore.isConnected()) {
+            return false;
+        }
         let hk_x = this.countLearnedIDs();
         if (id <= hk_x)
             return true;
@@ -728,6 +752,9 @@ class HuskylensProtocol {
     //% block="HuskyLens check if ID %id %Ht is on screen from the result"
     //% weight=75
     isAppear(id, Ht) {
+        if (!this.mbitMore.isConnected()) {
+            return false;
+        }
         switch (Ht) {
             case 1:
                 return this.countBlocks(id) != 0 ? true : false;
@@ -744,6 +771,9 @@ class HuskylensProtocol {
     //%block="HuskyLens get  $number1 of ID $id frame from the result"
     //% weight=65
     readeBox(id, number1) {
+        if (!this.mbitMore.isConnected()) {
+            return 0;
+        }
         let hk_y = this.cycle_block(id, 1);
         let hk_x = null;
         if (this.countBlocks(id) != 0) {
@@ -777,6 +807,9 @@ class HuskylensProtocol {
     //%block="HuskyLens get $number1 of ID $id arrow from the result"
     //% weight=60
     readeArrow(id, number1) {
+        if (!this.mbitMore.isConnected()) {
+            return 0;
+        }
         let hk_y = this.cycle_arrow(id, 1);
         let hk_x;
         if (this.countArrows(id) != 0) {
@@ -813,6 +846,9 @@ class HuskylensProtocol {
     //% weight=90
     //% advanced=true
     getBox(Ht) {
+        if (!this.mbitMore.isConnected()) {
+            return 0;
+        }
         switch (Ht) {
             case 1:
                 return this.countBlocks_s();
@@ -830,6 +866,9 @@ class HuskylensProtocol {
     //% weight=60
     //% advanced=true
     readBox_ss(index, data) {
+        if (!this.mbitMore.isConnected()) {
+            return 0;
+        }
         let hk_x = -1;
         let hk_i = index - 1;
         if (this.protocolPtr[hk_i][0] == protocolCommand.COMMAND_RETURN_BLOCK) {
@@ -862,6 +901,9 @@ class HuskylensProtocol {
     //% weight=60
     //% advanced=true
     readArrow_ss(index, data) {
+        if (!this.mbitMore.isConnected()) {
+            return 0;
+        }
         let hk_x;
         let hk_i = index - 1;
         if (this.protocolPtr[hk_i][0] == protocolCommand.COMMAND_RETURN_ARROW) {
@@ -895,6 +937,9 @@ class HuskylensProtocol {
     //% weight=55
     //% advanced=true
     getBox_S(id, Ht) {
+        if (!this.mbitMore.isConnected()) {
+            return 0;
+        }
         switch (Ht) {
             case 1:
                 return this.countBlocks(id);
@@ -913,6 +958,9 @@ class HuskylensProtocol {
     //% weight=45
     //% advanced=true
     readeBox_index(id, index, number1) {
+        if (!this.mbitMore.isConnected()) {
+            return 0;
+        }
         let hk_y = this.cycle_block(id, index);
         let hk_x;
         if (this.countBlocks(id) != 0) {
@@ -950,6 +998,9 @@ class HuskylensProtocol {
     //% weight=35
     //% advanced=true
     readeArrow_index(id, index, number1) {
+        if (!this.mbitMore.isConnected()) {
+            return 0;
+        }
         let hk_y = this.cycle_arrow(id, index);
         let hk_x;
         if (this.countArrows(id) != 0) {
@@ -986,6 +1037,9 @@ class HuskylensProtocol {
     //% weight=30
     //% advanced=true
     writeLearn1(id) {
+        if (!this.mbitMore.isConnected()) {
+            return;
+        }
         this.writeAlgorithm(id, 0X36);
         //while(!await wait(protocolCommand.COMMAND_RETURN_OK));
     }
@@ -996,6 +1050,9 @@ class HuskylensProtocol {
     //% weight=29
     //% advanced=true
     forgetLearn() {
+        if (!this.mbitMore.isConnected()) {
+            return;
+        }
         this.writeAlgorithm(0x47, 0X37);
         //while(!await wait(protocolCommand.COMMAND_RETURN_OK));
     }
@@ -1008,6 +1065,9 @@ class HuskylensProtocol {
     //% weight=28
     //% advanced=true
     writeName(id, name) {
+        if (!this.mbitMore.isConnected()) {
+            return;
+        }
         //do{
         let newname = name;
         let buffer = this.husky_lens_protocol_write_begin(0x2f);
@@ -1037,6 +1097,9 @@ class HuskylensProtocol {
     //% x.min=0 x.max=319
     //% y.min=0 y.max=210
     writeOSD(name, x, y) {
+        if (!this.mbitMore.isConnected()) {
+            return;
+        }
         //do{
         let buffer = this.husky_lens_protocol_write_begin(0x34);
         this.send_buffer[this.send_index] = name.length;
@@ -1067,6 +1130,9 @@ class HuskylensProtocol {
     //% weight=26
     //% advanced=true
     clearOSD() {
+        if (!this.mbitMore.isConnected()) {
+            return;
+        }
         this.writeAlgorithm(0x45, 0X35);
         //while(!await wait(protocolCommand.COMMAND_RETURN_OK));
     }
@@ -1077,6 +1143,9 @@ class HuskylensProtocol {
     //% weight=25
     //% advanced=true
     async takePhotoToSDCard(request) {
+        if (!this.mbitMore.isConnected()) {
+            return;
+        }
         switch (request) {
             case HUSKYLENSphoto.PHOTO:
                 this.writeAlgorithm(0x40, 0X30);
@@ -1102,6 +1171,9 @@ class HuskylensProtocol {
     //% advanced=true
     //% data.min=0 data.max=5
     async saveModelToTFCard(command, data) {
+        if (!this.mbitMore.isConnected()) {
+            return;
+        }
         switch (command) {
             case HUSKYLENSMode.SAVE:
                 this.writeAlgorithm(data, 0x32);
@@ -1235,7 +1307,6 @@ class HuskylensProtocol {
             check();
         });
         let buf = this.readBuf;
-        console.log("Read:", buf);
         for (let i = this.m_i; i < 16; i++) {
             if (this.husky_lens_protocol_receive(buf[i])) {
                 this.m_i++;
@@ -1493,8 +1564,8 @@ class HuskylensProtocol {
         const initializeIfNeeded = () => {
             if (this.connected)
                 return Promise.resolve();
-            return this.mbitMore._ble.startNotifications(MM_SERVICE.ID, MM_SERVICE.STATUS_CH, this.onNotifyStatus).then(() => {
-                return this.mbitMore._ble.startNotifications(MM_SERVICE.ID, MM_SERVICE.READ_CH, this.onNotifyRead);
+            return this.mbitMore._ble.startNotifications(MM_SERVICE.ID, MM_SERVICE.STATUS_CH, this.onNotifyStatus.bind(this)).then(() => {
+                return this.mbitMore._ble.startNotifications(MM_SERVICE.ID, MM_SERVICE.READ_CH, this.onNotifyRead.bind(this));
             }).then(() => {
                 this.connected = true;
                 return new Promise(resolve => setTimeout(resolve, 100)); // allow notification setup
@@ -1525,7 +1596,6 @@ class HuskylensProtocol {
                 console.error('BLE write failed:', err);
                 this.mbitMore._ble.handleDisconnectError(err);
             }).finally(() => {
-                console.log('written:', command);
                 window.clearTimeout(this.mbitMore.bleBusyTimeoutID);
                 this.mbitMore.bleBusy = false;
                 this.mbitMore.bleAccessWaiting = false;
@@ -1632,7 +1702,7 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
           }),
           arguments: {
             algorithm: {
-              type: ArgumentType.NUMBER,
+              type: ArgumentType.STRING,
               menu: 'algorithmMenu',
               defaultValue: protocolAlgorithm.ALGORITHM_OBJECT_TRACKING
             }
@@ -1643,31 +1713,31 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
             acceptReporters: false,
             items: [{
               text: 'face recognition',
-              value: protocolAlgorithm.ALGORITHM_FACE_RECOGNITION
+              value: protocolAlgorithm.ALGORITHM_FACE_RECOGNITION.toString()
             }, {
               text: 'object tracking',
-              value: protocolAlgorithm.ALGORITHM_OBJECT_TRACKING
+              value: protocolAlgorithm.ALGORITHM_OBJECT_TRACKING.toString()
             }, {
               text: 'object recognition',
-              value: protocolAlgorithm.ALGORITHM_OBJECT_RECOGNITION
+              value: protocolAlgorithm.ALGORITHM_OBJECT_RECOGNITION.toString()
             }, {
               text: 'line tracking',
-              value: protocolAlgorithm.ALGORITHM_LINE_TRACKING
+              value: protocolAlgorithm.ALGORITHM_LINE_TRACKING.toString()
             }, {
               text: 'color recognition',
-              value: protocolAlgorithm.ALGORITHM_COLOR_RECOGNITION
+              value: protocolAlgorithm.ALGORITHM_COLOR_RECOGNITION.toString()
             }, {
               text: 'tag recognition',
-              value: protocolAlgorithm.ALGORITHM_TAG_RECOGNITION
+              value: protocolAlgorithm.ALGORITHM_TAG_RECOGNITION.toString()
             }, {
               text: 'object classification',
-              value: protocolAlgorithm.OBJECTCLASSIFICATION
+              value: protocolAlgorithm.OBJECTCLASSIFICATION.toString()
             }, {
               text: 'QR Recogmition (EDU only)',
-              value: protocolAlgorithm.QRRECOGMITION
+              value: protocolAlgorithm.QRRECOGMITION.toString()
             }, {
               text: 'Barcode Recognition (EDU only)',
-              value: protocolAlgorithm.BARCODERECOGNITION
+              value: protocolAlgorithm.BARCODERECOGNITION.toString()
             }]
           }
         }
@@ -1676,7 +1746,7 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
   }, {
     key: "selectAlgorithm",
     value: function selectAlgorithm(args) {
-      this.initMode(args.algorithm);
+      this.initMode(Number(args.algorithm));
     }
   }], [{
     key: "formatMessage",
