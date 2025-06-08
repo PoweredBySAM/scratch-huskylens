@@ -1,5 +1,4 @@
 import path from 'path';
-import fs from 'fs-extra';
 
 import babel from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
@@ -8,6 +7,7 @@ import nodePolifills from 'rollup-plugin-polyfill-node';
 import importImage from '@rollup/plugin-image';
 import multi from '@rollup/plugin-multi-entry';
 import json from '@rollup/plugin-json';
+import typescript from '@rollup/plugin-typescript';
 
 // path for block
 const blockSrcDir = path.resolve(process.cwd(), './src/vm/extensions/block');
@@ -28,6 +28,7 @@ const rollupOptions = [
         importImage(),
         commonjs(),
         nodePolifills(),
+        typescript(),
         nodeResolve({
             browser: true,
             preferBuiltins: false,

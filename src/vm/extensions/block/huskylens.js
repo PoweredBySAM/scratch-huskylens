@@ -1,10 +1,7 @@
-// import BlockType from '../../extension-support/block-type';
-// import ArgumentType from '../../extension-support/argument-type';
+import BlockType from '../../extension-support/block-type';
+import ArgumentType from '../../extension-support/argument-type';
 import translations from './translations.json';
-// eslint-disable-next-line no-unused-vars
-import Runtime from '../../engine/runtime';
-import log from '../../util/log';
-import Base64Util from '../../util/base64-util';
+import {HuskylensProtocol, protocolAlgorithm} from './protocol.ts';
 
 /**
  * Formatter which is used for translation.
@@ -27,19 +24,12 @@ const setupTranslations = () => {
     }
 };
 
-const MM_SERVICE = {
-    ID: '0b50f3e4-607f-4151-9091-7d008d6ffc5c',
-    WRITE_CH: '0b500400-607f-4151-9091-7d008d6ffc5c',
-    READ_CH: '0b500400-607f-4151-9091-7d008d6ffc5c',
-    STATUS_CH: '0b500400-607f-4151-9091-7d008d6ffc5c'
-};
-
 const EXTENSION_ID = 'huskylens';
 
 /**
  * Scratch 3.0 blocks
  */
-class ExtensionBlocks {
+class ExtensionBlocks extends HuskylensProtocol {
     /**
      * A translation object which is used in this class.
      * @param {FormatObject} formatter - translation object
@@ -72,13 +62,13 @@ class ExtensionBlocks {
      */
     extensionURL = '';
 
-    mbitMore = null;
 
     /**
      * Construct a set of blocks for SAM Labs.
      * @param {Runtime} runtime - the Scratch 3.0 runtime.
      */
     constructor (runtime) {
+        super(runtime);
         /**
          * The Scratch 3.0 runtime.
          * @type {Runtime}
@@ -90,13 +80,6 @@ class ExtensionBlocks {
             formatMessage = runtime.formatMessage;
         }
         this.extensionId = 'huskylens';
-
-        if (runtime.peripheralExtensions.microbitMore) {
-            this.mbitMore = runtime.peripheralExtensions.microbitMore;
-        } else {
-            this.mbitMore = null;
-            log.error('microbit-more extension not found');
-        }
     }
 
     /**
@@ -111,59 +94,82 @@ class ExtensionBlocks {
             showStatusButton: false,
             color1: '#e7660b',
             color2: '#e7660b',
-            blocks: [],
-            menus: {}
+            blocks: [
+                {
+                    opcode: 'initI2c',
+                    blockType: BlockType.COMMAND,
+                    text: formatMessage({
+                        id: 'huskylens.initI2c',
+                        default: 'initialize HuskyLens'
+                    }),
+                    terminal: false
+                },
+                {
+                    opcode: 'selectAlgorithm',
+                    blockType: BlockType.COMMAND,
+                    text: formatMessage({
+                        id: 'huskylens.selectAlgorithm',
+                        default: 'switch algorithm to [algorithm]'
+                    }),
+                    arguments: {
+                        algorithm: {
+                            type: ArgumentType.NUMBER,
+                            menu: 'algorithmMenu',
+                            defaultValue: protocolAlgorithm.ALGORITHM_OBJECT_TRACKING
+                        }
+                    }
+                }],
+            menus: {
+                algorithmMenu: {
+                    acceptReporters: false,
+                    items: [
+                        {
+                            text: 'face recognition',
+                            value: protocolAlgorithm.ALGORITHM_FACE_RECOGNITION
+                        },
+                        {
+                            text: 'object tracking',
+                            value: protocolAlgorithm.ALGORITHM_OBJECT_TRACKING
+                        },
+                        {
+                            text: 'object recognition',
+                            value: protocolAlgorithm.ALGORITHM_OBJECT_RECOGNITION
+                        },
+                        {
+                            text: 'line tracking',
+                            value: protocolAlgorithm.ALGORITHM_LINE_TRACKING
+                        },
+                        {
+                            text: 'color recognition',
+                            value: protocolAlgorithm.ALGORITHM_COLOR_RECOGNITION
+                        },
+                        {
+                            text: 'tag recognition',
+                            value: protocolAlgorithm.ALGORITHM_TAG_RECOGNITION
+                        },
+                        {
+                            text: 'object classification',
+                            value: protocolAlgorithm.OBJECTCLASSIFICATION
+                        },
+                        {
+                            text: 'QR Recogmition (EDU only)',
+                            value: protocolAlgorithm.QRRECOGMITION
+                        },
+                        {
+                            text: 'Barcode Recognition (EDU only)',
+                            value: protocolAlgorithm.BARCODERECOGNITION
+                        }
+                    ]
+                }
+            }
         };
     }
 
-    /**
-     * Send a command to the micro:bit's I"C interface -> HuskyLens.
-     * @param {Uint8Array} command Contents of the command.
-     * @return {Promise} a Promise that resolves when the data was sent and after send command interval.
-     */
-    sendCommand (command) {
-        const data = Base64Util.uint8ArrayToBase64(
-            new Uint8Array([
-                command.id,
-                ...command.message
-            ])
-        );
-
-        if (!this.mbitMore.isConnected()) return Promise.resolve();
-        if (this.mbitMore.bleBusy) {
-            this.mbitMore.bleAccessWaiting = true;
-            setTimeout(() => this.sendCommand(command), 1);
-            return; // Do not return Promise.resolve() to re-try.
-        }
-
-        this.mbitMore.bleBusy = true;
-        // Clear busy and BLE access waiting flag when the scratch-link does not respond.
-        this.mbitMore.bleBusyTimeoutID = window.setTimeout(() => {
-            this.mbitMore.bleBusy = false;
-            this.mbitMore.bleAccessWaiting = false;
-        }, 1000);
-
-        return new Promise(resolve => {
-            this.mbitMore._ble.write(
-                MM_SERVICE.ID,
-                MM_SERVICE.WRITE_CH,
-                data,
-                'base64',
-                false
-            )
-                .then(() => {
-                    window.clearTimeout(this.mbitMore.bleBusyTimeoutID);
-                })
-                .catch(err => {
-                    this.mbitMore._ble.handleDisconnectError(err);
-                })
-                .finally(() => {
-                    this.mbitMore.bleBusy = false;
-                    this.mbitMore.bleAccessWaiting = false;
-                });
-            setTimeout(() => resolve(), 30);
-        });
+    selectAlgorithm (args) {
+        this.initMode(args.algorithm);
     }
+
+    
 }
 
 export {ExtensionBlocks as default, ExtensionBlocks as blockClass};
