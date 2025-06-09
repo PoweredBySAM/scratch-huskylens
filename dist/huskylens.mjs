@@ -1999,14 +1999,14 @@ var en = {
 	"huskylens.name": "HuskyLens",
 	"huskylens.initI2c": "initialize HuskyLens",
 	"huskylens.selectAlgorithm": "switch algorithm to [algorithm]",
-	"huskylens.requestDataOnce": "request data once and save into the result",
-	"huskylens.getLearnedIDCount": "get total number of learned IDs from the result",
-	"huskylens.isObjectOnScreen": "check if [objectType] is on screen from the result",
-	"huskylens.getBoxNearCenter": "get [parameter] of box closest to screen center from the result",
-	"huskylens.learnIDAuto": "learn ID [id] once automatically",
+	"huskylens.requestDataOnce": "request data from device",
+	"huskylens.getLearnedIDCount": "number of learned IDs",
+	"huskylens.isObjectOnScreen": "[objectType] is on screen?",
+	"huskylens.getBoxNearCenter": "[parameter] of box closest to screen center",
+	"huskylens.learnIDAuto": "learn ID [id] automatically",
 	"huskylens.setIDName": "set name of ID [id] as [name]",
 	"huskylens.clearText": "clear all custom texts on screen",
-	"huskylens.takePhoto": "take [type] and save to SD card",
+	"huskylens.takePhoto": "take a [type] and save to SD card",
 	"huskylens.menu.algorithm.face_rec": "face recognition",
 	"huskylens.menu.algorithm.obj_trac": "object tracking",
 	"huskylens.menu.algorithm.obj_rec": "object recognition",
@@ -2124,21 +2124,21 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
           blockType: BlockType.COMMAND,
           text: formatMessage({
             id: 'huskylens.requestDataOnce',
-            default: 'request data once and save into the result'
+            default: 'request data from device'
           })
         }, {
           opcode: 'getLearnedIDCount',
           blockType: BlockType.REPORTER,
           text: formatMessage({
             id: 'huskylens.getLearnedIDCount',
-            default: 'get total number of learned IDs from the result'
+            default: 'number of learned IDs'
           })
         }, {
           opcode: 'isObjectOnScreen',
           blockType: BlockType.BOOLEAN,
           text: formatMessage({
             id: 'huskylens.isObjectOnScreen',
-            default: 'check if [objectType] is on screen from the result'
+            default: '[objectType] is on screen?'
           }),
           arguments: {
             objectType: {
@@ -2152,7 +2152,7 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
           blockType: BlockType.REPORTER,
           text: formatMessage({
             id: 'huskylens.getBoxNearCenter',
-            default: 'get [parameter] of box closest to screen center from the result'
+            default: '[parameter] of box closest to screen center'
           }),
           arguments: {
             parameter: {
@@ -2167,7 +2167,7 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
           //     blockType: BlockType.REPORTER,
           //     text: formatMessage({
           //         id: 'huskylens.getArrowNearCenter',
-          //         default: 'get [parameter] of arrow closest to screen center from the result'
+          //         default: '[parameter] of arrow closest to screen center'
           //     }),
           //     arguments: {
           //         parameter: {
@@ -2182,7 +2182,7 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
           //     blockType: BlockType.BOOLEAN,
           //     text: formatMessage({
           //         id: 'huskylens.isIDLearned',
-          //         default: 'check if ID [id] is learned from the result'
+          //         default: 'is ID [id] learned?'
           //     }),
           //     arguments: {
           //         id: {
@@ -2196,7 +2196,7 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
           //     blockType: BlockType.BOOLEAN,
           //     text: formatMessage({
           //         id: 'huskylens.isIDObjectOnScreen',
-          //         default: 'check if ID [id] [objectType] is on screen from the result'
+          //         default: 'is ID [id] [objectType] on the screen?'
           //     }),
           //     arguments: {
           //         id: {type: ArgumentType.NUMBER, defaultValue: 1},
@@ -2208,7 +2208,7 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
           //     blockType: BlockType.REPORTER,
           //     text: formatMessage({
           //         id: 'huskylens.getBoxParamByID',
-          //         default: 'get [parameter] of ID [id] box from the result'
+          //         default: '[parameter] of ID [id] box'
           //     }),
           //     arguments: {
           //         parameter: {type: ArgumentType.STRING, menu: 'parameterMenu', defaultValue: 'x'},
@@ -2220,7 +2220,7 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
           //     blockType: BlockType.REPORTER,
           //     text: formatMessage({
           //         id: 'huskylens.getArrowParamByID',
-          //         default: 'get [parameter] of ID [id] arrow from the result'
+          //         default: '[parameter] of ID [id] arrow'
           //     }),
           //     arguments: {
           //         parameter: {type: ArgumentType.STRING, menu: 'parameterMenu', defaultValue: 'x'},
@@ -2232,7 +2232,7 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
           //     blockType: BlockType.REPORTER,
           //     text: formatMessage({
           //         id: 'huskylens.getTotalCount',
-          //         default: 'get total number of [objectType] from the result'
+          //         default: 'number of [objectType]'
           //     }),
           //     arguments: {
           //         objectType: {type: ArgumentType.STRING, menu: 'resultTypeMenu', defaultValue: 'frame'}
@@ -2243,7 +2243,7 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
           //     blockType: BlockType.REPORTER,
           //     text: formatMessage({
           //         id: 'huskylens.getNthBoxParam',
-          //         default: 'get [parameter] of No. [index] box from the result'
+          //         default: '[parameter] of No. [index] box'
           //     }),
           //     arguments: {
           //         parameter: {type: ArgumentType.STRING, menu: 'parameterMenu', defaultValue: 'x'},
@@ -2255,7 +2255,7 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
           //     blockType: BlockType.REPORTER,
           //     text: formatMessage({
           //         id: 'huskylens.getNthArrowParam',
-          //         default: 'get [parameter] of No. [index] arrow from the result'
+          //         default: '[parameter] of No. [index] arrow'
           //     }),
           //     arguments: {
           //         parameter: {type: ArgumentType.STRING, menu: 'parameterMenu', defaultValue: 'x'},
@@ -2267,7 +2267,7 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
           //     blockType: BlockType.REPORTER,
           //     text: formatMessage({
           //         id: 'huskylens.getTotalByID',
-          //         default: 'get total number of ID [id] [objectType] from the result'
+          //         default: 'number of ID [id] [objectType]'
           //     }),
           //     arguments: {
           //         id: {type: ArgumentType.NUMBER, defaultValue: 1},
@@ -2279,7 +2279,7 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
           //     blockType: BlockType.REPORTER,
           //     text: formatMessage({
           //         id: 'huskylens.getNthBoxParamByID',
-          //         default: 'get [parameter] of ID [id] No. [index] box from the result'
+          //         default: '[parameter] of ID [id] No. [index] box'
           //     }),
           //     arguments: {
           //         parameter: {type: ArgumentType.STRING, menu: 'parameterMenu', defaultValue: 'x'},
@@ -2292,7 +2292,7 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
           //     blockType: BlockType.REPORTER,
           //     text: formatMessage({
           //         id: 'huskylens.getNthArrowParamByID',
-          //         default: 'get [parameter] of ID [id] No. [index] arrow from the result'
+          //         default: '[parameter] of ID [id] No. [index] arrow'
           //     }),
           //     arguments: {
           //         parameter: {type: ArgumentType.STRING, menu: 'parameterMenu', defaultValue: 'x'},
@@ -2303,7 +2303,7 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
           // {
           //     opcode: 'learnIDAuto',
           //     blockType: BlockType.COMMAND,
-          //     text: formatMessage({id: 'huskylens.learnIDAuto', default: 'learn ID [id] once automatically'}),
+          //     text: formatMessage({id: 'huskylens.learnIDAuto', default: 'learn ID [id] automatically'}),
           //     arguments: {
           //         id: {type: ArgumentType.NUMBER, defaultValue: 1}
           //     }
@@ -2346,7 +2346,7 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
           // {
           //     opcode: 'takePhoto',
           //     blockType: BlockType.COMMAND,
-          //     text: formatMessage({id: 'huskylens.takePhoto', default: 'take [type] and save to SD card'}),
+          //     text: formatMessage({id: 'huskylens.takePhoto', default: 'take a [type] and save to SD card'}),
           //     arguments: {
           //         type: {type: ArgumentType.STRING, defaultValue: 'photo'}
           //     }
