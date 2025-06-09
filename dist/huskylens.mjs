@@ -2037,7 +2037,7 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
      * URL to get this extension.
      * @type {string}
      */
-    _defineProperty(_this, "extensionURL", 'https://github.com/Rbel12b/scratch-huskylens/blob/main/README.md');
+    _defineProperty(_this, "extensionURL", 'https://rbel12b.github.io/Scratch/dist/huskylens.mjs');
     _this.runtime = runtime;
     if (runtime.formatMessage) {
       // Replace 'formatMessage' to a formatter which is used in the runtime.
