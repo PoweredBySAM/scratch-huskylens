@@ -31,9 +31,9 @@ This extension enables you to use the **DFRobot HuskyLens AI camera** in your pr
 ### 3. Use the Extension in SAM Scratch
 
 1. Open SAM Scratch.
-2. In the **Extensions** panel, add the “HuskyLens” extension.
-3. Connect your micro:bit via **USB or Bluetooth**.
-4. Power on the HuskyLens and use the blocks to interact with the camera.
+2. In the **Extensions** panel, add the “HuskyLens” extension, it should automatically add the microbit more extension.
+3. Connect your micro:bit with the microbit more extension.
+4. Use the blocks to interact with the camera.
 
 ---
 
