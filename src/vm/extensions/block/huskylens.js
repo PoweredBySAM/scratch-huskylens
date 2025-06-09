@@ -155,7 +155,7 @@ class ExtensionBlocks extends HuskylensProtocol {
                         objectType: {
                             type: ArgumentType.STRING,
                             menu: 'resultTypeMenu',
-                            defaultValue: 'frame'
+                            defaultValue: HUSKYLENSResultType_t.HUSKYLENSResultBlock
                         }
                     }
                 },
@@ -170,7 +170,7 @@ class ExtensionBlocks extends HuskylensProtocol {
                         parameter: {
                             type: ArgumentType.STRING,
                             menu: 'parameterMenu3',
-                            defaultValue: 'ID'
+                            defaultValue: Content3.ID
                         }
                     }
                 },
@@ -185,7 +185,7 @@ class ExtensionBlocks extends HuskylensProtocol {
                         parameter: {
                             type: ArgumentType.STRING,
                             menu: 'parameterMenu4',
-                            defaultValue: 'ID'
+                            defaultValue: Content4.ID
                         }
                     }
                 },
@@ -212,7 +212,11 @@ class ExtensionBlocks extends HuskylensProtocol {
                     }),
                     arguments: {
                         id: {type: ArgumentType.NUMBER, defaultValue: 1},
-                        objectType: {type: ArgumentType.STRING, menu: 'resultTypeMenu', defaultValue: 'frame'}
+                        objectType: {
+                            type: ArgumentType.STRING,
+                            menu: 'resultTypeMenu',
+                            defaultValue: HUSKYLENSResultType_t.HUSKYLENSResultBlock
+                        }
                     }
                 },
                 {
@@ -223,7 +227,7 @@ class ExtensionBlocks extends HuskylensProtocol {
                         default: '[parameter] of ID [id] box'
                     }),
                     arguments: {
-                        parameter: {type: ArgumentType.STRING, menu: 'parameterMenu1', defaultValue: 'width'},
+                        parameter: {type: ArgumentType.STRING, menu: 'parameterMenu1', defaultValue: Content1.width},
                         id: {type: ArgumentType.NUMBER, defaultValue: 1}
                     }
                 },
@@ -235,7 +239,7 @@ class ExtensionBlocks extends HuskylensProtocol {
                         default: '[parameter] of ID [id] arrow'
                     }),
                     arguments: {
-                        parameter: {type: ArgumentType.STRING, menu: 'parameterMenu2', defaultValue: 'X beginning'},
+                        parameter: {type: ArgumentType.STRING, menu: 'parameterMenu2', defaultValue: Content2.xOrigin},
                         id: {type: ArgumentType.NUMBER, defaultValue: 1}
                     }
                 },
@@ -248,7 +252,11 @@ class ExtensionBlocks extends HuskylensProtocol {
                         default: 'number of [objectType]s'
                     }),
                     arguments: {
-                        objectType: {type: ArgumentType.STRING, menu: 'resultTypeMenu', defaultValue: 'frame'}
+                        objectType: {
+                            type: ArgumentType.STRING,
+                            menu: 'resultTypeMenu',
+                            defaultValue: HUSKYLENSResultType_t.HUSKYLENSResultBlock
+                        }
                     }
                 },
                 {
@@ -259,7 +267,7 @@ class ExtensionBlocks extends HuskylensProtocol {
                         default: '[parameter] of No. [index] box'
                     }),
                     arguments: {
-                        parameter: {type: ArgumentType.STRING, menu: 'parameterMenu3', defaultValue: 'ID'},
+                        parameter: {type: ArgumentType.STRING, menu: 'parameterMenu3', defaultValue: Content3.ID},
                         index: {type: ArgumentType.NUMBER, defaultValue: 1}
                     }
                 },
@@ -271,7 +279,7 @@ class ExtensionBlocks extends HuskylensProtocol {
                         default: '[parameter] of No. [index] arrow'
                     }),
                     arguments: {
-                        parameter: {type: ArgumentType.STRING, menu: 'parameterMenu4', defaultValue: 'ID'},
+                        parameter: {type: ArgumentType.STRING, menu: 'parameterMenu4', defaultValue: Content4.ID},
                         index: {type: ArgumentType.NUMBER, defaultValue: 1}
                     }
                 },
@@ -284,7 +292,11 @@ class ExtensionBlocks extends HuskylensProtocol {
                     }),
                     arguments: {
                         id: {type: ArgumentType.NUMBER, defaultValue: 1},
-                        objectType: {type: ArgumentType.STRING, menu: 'resultTypeMenu', defaultValue: 'frame'}
+                        objectType: {
+                            type: ArgumentType.STRING,
+                            menu: 'resultTypeMenu',
+                            defaultValue: HUSKYLENSResultType_t.HUSKYLENSResultBlock
+                        }
                     }
                 },
                 {
@@ -295,7 +307,11 @@ class ExtensionBlocks extends HuskylensProtocol {
                         default: '[parameter] of ID [id] No. [index] box'
                     }),
                     arguments: {
-                        parameter: {type: ArgumentType.STRING, menu: 'parameterMenu1', defaultValue: 'X center'},
+                        parameter: {
+                            type: ArgumentType.STRING,
+                            menu: 'parameterMenu1',
+                            defaultValue: Content1.width
+                        },
                         id: {type: ArgumentType.NUMBER, defaultValue: 1},
                         index: {type: ArgumentType.NUMBER, defaultValue: 1}
                     }

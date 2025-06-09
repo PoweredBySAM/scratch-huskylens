@@ -1300,9 +1300,6 @@ class HuskylensProtocol {
      * @param id to id ,eg: 1
      * @param index to index ,eg: 1
      */
-    //%block="HuskyLens get $number1 of the ID $id  No. $index frame from the result"
-    //% weight=45
-    //% advanced=true
     readeBox_index(id, index, number1) {
         if (!this.mbitMore.isConnected()) {
             return 0;
@@ -2126,7 +2123,7 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
             objectType: {
               type: ArgumentType.STRING,
               menu: 'resultTypeMenu',
-              defaultValue: 'frame'
+              defaultValue: HUSKYLENSResultType_t.HUSKYLENSResultBlock
             }
           }
         }, {
@@ -2140,7 +2137,7 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
             parameter: {
               type: ArgumentType.STRING,
               menu: 'parameterMenu3',
-              defaultValue: 'ID'
+              defaultValue: Content3.ID
             }
           }
         }, {
@@ -2154,7 +2151,7 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
             parameter: {
               type: ArgumentType.STRING,
               menu: 'parameterMenu4',
-              defaultValue: 'ID'
+              defaultValue: Content4.ID
             }
           }
         }, {
@@ -2185,7 +2182,7 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
             objectType: {
               type: ArgumentType.STRING,
               menu: 'resultTypeMenu',
-              defaultValue: 'frame'
+              defaultValue: HUSKYLENSResultType_t.HUSKYLENSResultBlock
             }
           }
         }, {
@@ -2199,7 +2196,7 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
             parameter: {
               type: ArgumentType.STRING,
               menu: 'parameterMenu1',
-              defaultValue: 'width'
+              defaultValue: Content1.width
             },
             id: {
               type: ArgumentType.NUMBER,
@@ -2217,7 +2214,7 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
             parameter: {
               type: ArgumentType.STRING,
               menu: 'parameterMenu2',
-              defaultValue: 'X beginning'
+              defaultValue: Content2.xOrigin
             },
             id: {
               type: ArgumentType.NUMBER,
@@ -2235,7 +2232,7 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
             objectType: {
               type: ArgumentType.STRING,
               menu: 'resultTypeMenu',
-              defaultValue: 'frame'
+              defaultValue: HUSKYLENSResultType_t.HUSKYLENSResultBlock
             }
           }
         }, {
@@ -2249,7 +2246,7 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
             parameter: {
               type: ArgumentType.STRING,
               menu: 'parameterMenu3',
-              defaultValue: 'ID'
+              defaultValue: Content3.ID
             },
             index: {
               type: ArgumentType.NUMBER,
@@ -2267,7 +2264,7 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
             parameter: {
               type: ArgumentType.STRING,
               menu: 'parameterMenu4',
-              defaultValue: 'ID'
+              defaultValue: Content4.ID
             },
             index: {
               type: ArgumentType.NUMBER,
@@ -2289,7 +2286,7 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
             objectType: {
               type: ArgumentType.STRING,
               menu: 'resultTypeMenu',
-              defaultValue: 'frame'
+              defaultValue: HUSKYLENSResultType_t.HUSKYLENSResultBlock
             }
           }
         }, {
@@ -2303,7 +2300,7 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
             parameter: {
               type: ArgumentType.STRING,
               menu: 'parameterMenu1',
-              defaultValue: 'X center'
+              defaultValue: Content1.width
             },
             id: {
               type: ArgumentType.NUMBER,
