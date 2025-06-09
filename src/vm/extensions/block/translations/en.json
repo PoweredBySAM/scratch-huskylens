@@ -1,0 +1,14 @@
+{
+  "huskylens.name": "HuskyLens",
+  "huskylens.initI2c": "initialize HuskyLens",
+  "huskylens.selectAlgorithm": "switch algorithm to [algorithm]",
+  "huskylens.menu.algorithm.face_rec": "face recognition",
+  "huskylens.menu.algorithm.obj_trac": "object tracking",
+  "huskylens.menu.algorithm.obj_rec": "object recognition",
+  "huskylens.selectAlgomenu.algorithm.line_trac": "line tracking",
+  "huskylens.menu.algorithm.color_rec": "color recognition",
+  "huskylens.menu.algorithm.tag_rec": "tag recognition",
+  "huskylens.menu.algorithm.obj_class": "object classification",
+  "huskylens.menu.algorithm.qr_rec": "QR code recogmition (EDU only)",
+  "huskylens.menu.algorithm.bar_rec": "barcode recognition (EDU only)"
+}

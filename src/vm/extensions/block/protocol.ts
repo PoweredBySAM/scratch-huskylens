@@ -826,6 +826,7 @@ export class HuskylensProtocol {
             } else {
                 return false;
             }
+            await new Promise(resolve => setTimeout(resolve, 100));
         }
         return false;
     }

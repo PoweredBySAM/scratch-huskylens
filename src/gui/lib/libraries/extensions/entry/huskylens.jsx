@@ -3,8 +3,14 @@
  */
 
 import iconURL from './huskylens.png';
-//import insetIconURL from './huskylens-small.svg';
-import translations from './translations.json';
+// import insetIconURL from './huskylens-small.svg';
+
+import en from './translations/en.json';
+
+const translations = {
+    en
+};
+
 
 /**
  * Formatter to translate the messages in this extension.
@@ -17,7 +23,7 @@ let formatMessage = messageData => messageData.defaultMessage;
 const entry = {
     get name () {
         return formatMessage({
-            id: 'samlabs.entry.name',
+            id: 'huskylens.entry.name',
             defaultMessage: 'DFRobot HuskyLens',
             description: 'Name for the extension'
         });
@@ -28,7 +34,7 @@ const entry = {
     // insetIconURL: insetIconURL,
     get description () {
         return formatMessage({
-            id: 'samlabs.entry.description',
+            id: 'huskylens.entry.description',
             defaultMessage: '',
             description: 'Description for the extension'
         });

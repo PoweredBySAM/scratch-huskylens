@@ -1,7 +1,12 @@
 import BlockType from '../../extension-support/block-type';
 import ArgumentType from '../../extension-support/argument-type';
-import translations from './translations.json';
 import {HuskylensProtocol, protocolAlgorithm} from './protocol.ts';
+
+import en from './translations/en.json';
+
+const translations = {
+    en: en
+};
 
 /**
  * Formatter which is used for translation.
@@ -124,39 +129,66 @@ class ExtensionBlocks extends HuskylensProtocol {
                     acceptReporters: false,
                     items: [
                         {
-                            text: 'face recognition',
+                            text: formatMessage({
+                                id: 'huskylens.menu.algorithm.face_rec',
+                                default: 'face recognition'
+                            }),
                             value: protocolAlgorithm.ALGORITHM_FACE_RECOGNITION.toString()
                         },
                         {
-                            text: 'object tracking',
+                            text: formatMessage({
+                                id: 'huskylens.menu.algorithm.obj_trac',
+                                default: 'object tracking'
+                            }),
                             value: protocolAlgorithm.ALGORITHM_OBJECT_TRACKING.toString()
                         },
                         {
-                            text: 'object recognition',
+                            text: formatMessage({
+                                id: 'huskylens.menu.algorithm.obj_rec',
+                                default: 'object recognition'
+                            }),
                             value: protocolAlgorithm.ALGORITHM_OBJECT_RECOGNITION.toString()
                         },
                         {
-                            text: 'line tracking',
+                            text: formatMessage({
+                                id: 'huskylens.selectAlgomenu.algorithm.line_trac',
+                                default: 'line tracking'
+                            }),
                             value: protocolAlgorithm.ALGORITHM_LINE_TRACKING.toString()
                         },
                         {
-                            text: 'color recognition',
+                            text: formatMessage({
+                                id: 'huskylens.menu.algorithm.color_rec',
+                                default: 'color recognition'
+                            }),
                             value: protocolAlgorithm.ALGORITHM_COLOR_RECOGNITION.toString()
                         },
                         {
-                            text: 'tag recognition',
+                            text: formatMessage({
+                                id: 'huskylens.menu.algorithm.tag_rec',
+                                default: 'tag recognition'
+                            }),
                             value: protocolAlgorithm.ALGORITHM_TAG_RECOGNITION.toString()
                         },
                         {
-                            text: 'object classification',
+                            text: formatMessage({
+                                id: 'huskylens.menu.algorithm.obj_class',
+                                default: 'object classification'
+                            }),
                             value: protocolAlgorithm.OBJECTCLASSIFICATION.toString()
                         },
                         {
-                            text: 'QR Recogmition (EDU only)',
+                            text: formatMessage({
+                                id: 'huskylens.menu.algorithm.qr_rec',
+                                default: 'QR code recogmition (EDU only)'
+                            }),
                             value: protocolAlgorithm.QRRECOGMITION.toString()
                         },
                         {
-                            text: 'Barcode Recognition (EDU only)',
+                            text: formatMessage({
+                                id: 'huskylens.menu.algorithm.bar_rec',
+                                default: 'barcode recognition (EDU only)'
+                            }),
                             value: protocolAlgorithm.BARCODERECOGNITION.toString()
                         }
                     ]
