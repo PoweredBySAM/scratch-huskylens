@@ -58,26 +58,52 @@ var entry = {
   translationMap: translations$1
 };
 
+function asyncGeneratorStep(n, t, e, r, o, a, c) {
+  try {
+    var i = n[a](c),
+      u = i.value;
+  } catch (n) {
+    return void e(n);
+  }
+  i.done ? t(u) : Promise.resolve(u).then(r, o);
+}
+function _asyncToGenerator(n) {
+  return function () {
+    var t = this,
+      e = arguments;
+    return new Promise(function (r, o) {
+      var a = n.apply(t, e);
+      function _next(n) {
+        asyncGeneratorStep(a, r, o, _next, _throw, "next", n);
+      }
+      function _throw(n) {
+        asyncGeneratorStep(a, r, o, _next, _throw, "throw", n);
+      }
+      _next(void 0);
+    });
+  };
+}
+
 function _classCallCheck$1(a, n) {
   if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function");
 }
 
-function _typeof$1(o) {
+function _typeof$2(o) {
   "@babel/helpers - typeof";
 
-  return _typeof$1 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) {
+  return _typeof$2 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) {
     return typeof o;
   } : function (o) {
     return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o;
-  }, _typeof$1(o);
+  }, _typeof$2(o);
 }
 
 function toPrimitive$1(t, r) {
-  if ("object" != _typeof$1(t) || !t) return t;
+  if ("object" != _typeof$2(t) || !t) return t;
   var e = t[Symbol.toPrimitive];
   if (void 0 !== e) {
     var i = e.call(t, r);
-    if ("object" != _typeof$1(i)) return i;
+    if ("object" != _typeof$2(i)) return i;
     throw new TypeError("@@toPrimitive must return a primitive value.");
   }
   return (String )(t);
@@ -85,7 +111,7 @@ function toPrimitive$1(t, r) {
 
 function toPropertyKey$1(t) {
   var i = toPrimitive$1(t, "string");
-  return "symbol" == _typeof$1(i) ? i : i + "";
+  return "symbol" == _typeof$2(i) ? i : i + "";
 }
 
 function _defineProperties$1(e, r) {
@@ -106,7 +132,7 @@ function _assertThisInitialized(e) {
 }
 
 function _possibleConstructorReturn(t, e) {
-  if (e && ("object" == _typeof$1(e) || "function" == typeof e)) return e;
+  if (e && ("object" == _typeof$2(e) || "function" == typeof e)) return e;
   if (void 0 !== e) throw new TypeError("Derived constructors may only return object or undefined");
   return _assertThisInitialized(t);
 }
@@ -148,6 +174,369 @@ function _defineProperty(e, r, t) {
 function getDefaultExportFromCjs (x) {
 	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
 }
+
+var regeneratorRuntime$1 = {exports: {}};
+
+var _typeof$1 = {exports: {}};
+
+var hasRequired_typeof;
+function require_typeof() {
+  if (hasRequired_typeof) return _typeof$1.exports;
+  hasRequired_typeof = 1;
+  (function (module) {
+    function _typeof(o) {
+      "@babel/helpers - typeof";
+
+      return module.exports = _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) {
+        return typeof o;
+      } : function (o) {
+        return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o;
+      }, module.exports.__esModule = true, module.exports["default"] = module.exports, _typeof(o);
+    }
+    module.exports = _typeof, module.exports.__esModule = true, module.exports["default"] = module.exports;
+  })(_typeof$1);
+  return _typeof$1.exports;
+}
+
+var hasRequiredRegeneratorRuntime;
+function requireRegeneratorRuntime() {
+  if (hasRequiredRegeneratorRuntime) return regeneratorRuntime$1.exports;
+  hasRequiredRegeneratorRuntime = 1;
+  (function (module) {
+    var _typeof = require_typeof()["default"];
+    function _regeneratorRuntime() {
+
+      /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */
+      module.exports = _regeneratorRuntime = function _regeneratorRuntime() {
+        return e;
+      }, module.exports.__esModule = true, module.exports["default"] = module.exports;
+      var t,
+        e = {},
+        r = Object.prototype,
+        n = r.hasOwnProperty,
+        o = Object.defineProperty || function (t, e, r) {
+          t[e] = r.value;
+        },
+        i = "function" == typeof Symbol ? Symbol : {},
+        a = i.iterator || "@@iterator",
+        c = i.asyncIterator || "@@asyncIterator",
+        u = i.toStringTag || "@@toStringTag";
+      function define(t, e, r) {
+        return Object.defineProperty(t, e, {
+          value: r,
+          enumerable: true,
+          configurable: true,
+          writable: true
+        }), t[e];
+      }
+      try {
+        define({}, "");
+      } catch (t) {
+        define = function define(t, e, r) {
+          return t[e] = r;
+        };
+      }
+      function wrap(t, e, r, n) {
+        var i = e && e.prototype instanceof Generator ? e : Generator,
+          a = Object.create(i.prototype),
+          c = new Context(n || []);
+        return o(a, "_invoke", {
+          value: makeInvokeMethod(t, r, c)
+        }), a;
+      }
+      function tryCatch(t, e, r) {
+        try {
+          return {
+            type: "normal",
+            arg: t.call(e, r)
+          };
+        } catch (t) {
+          return {
+            type: "throw",
+            arg: t
+          };
+        }
+      }
+      e.wrap = wrap;
+      var h = "suspendedStart",
+        l = "suspendedYield",
+        f = "executing",
+        s = "completed",
+        y = {};
+      function Generator() {}
+      function GeneratorFunction() {}
+      function GeneratorFunctionPrototype() {}
+      var p = {};
+      define(p, a, function () {
+        return this;
+      });
+      var d = Object.getPrototypeOf,
+        v = d && d(d(values([])));
+      v && v !== r && n.call(v, a) && (p = v);
+      var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p);
+      function defineIteratorMethods(t) {
+        ["next", "throw", "return"].forEach(function (e) {
+          define(t, e, function (t) {
+            return this._invoke(e, t);
+          });
+        });
+      }
+      function AsyncIterator(t, e) {
+        function invoke(r, o, i, a) {
+          var c = tryCatch(t[r], t, o);
+          if ("throw" !== c.type) {
+            var u = c.arg,
+              h = u.value;
+            return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) {
+              invoke("next", t, i, a);
+            }, function (t) {
+              invoke("throw", t, i, a);
+            }) : e.resolve(h).then(function (t) {
+              u.value = t, i(u);
+            }, function (t) {
+              return invoke("throw", t, i, a);
+            });
+          }
+          a(c.arg);
+        }
+        var r;
+        o(this, "_invoke", {
+          value: function value(t, n) {
+            function callInvokeWithMethodAndArg() {
+              return new e(function (e, r) {
+                invoke(t, n, e, r);
+              });
+            }
+            return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg();
+          }
+        });
+      }
+      function makeInvokeMethod(e, r, n) {
+        var o = h;
+        return function (i, a) {
+          if (o === f) throw Error("Generator is already running");
+          if (o === s) {
+            if ("throw" === i) throw a;
+            return {
+              value: t,
+              done: true
+            };
+          }
+          for (n.method = i, n.arg = a;;) {
+            var c = n.delegate;
+            if (c) {
+              var u = maybeInvokeDelegate(c, n);
+              if (u) {
+                if (u === y) continue;
+                return u;
+              }
+            }
+            if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) {
+              if (o === h) throw o = s, n.arg;
+              n.dispatchException(n.arg);
+            } else "return" === n.method && n.abrupt("return", n.arg);
+            o = f;
+            var p = tryCatch(e, r, n);
+            if ("normal" === p.type) {
+              if (o = n.done ? s : l, p.arg === y) continue;
+              return {
+                value: p.arg,
+                done: n.done
+              };
+            }
+            "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg);
+          }
+        };
+      }
+      function maybeInvokeDelegate(e, r) {
+        var n = r.method,
+          o = e.iterator[n];
+        if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y;
+        var i = tryCatch(o, e.iterator, r.arg);
+        if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y;
+        var a = i.arg;
+        return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y);
+      }
+      function pushTryEntry(t) {
+        var e = {
+          tryLoc: t[0]
+        };
+        1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e);
+      }
+      function resetTryEntry(t) {
+        var e = t.completion || {};
+        e.type = "normal", delete e.arg, t.completion = e;
+      }
+      function Context(t) {
+        this.tryEntries = [{
+          tryLoc: "root"
+        }], t.forEach(pushTryEntry, this), this.reset(true);
+      }
+      function values(e) {
+        if (e || "" === e) {
+          var r = e[a];
+          if (r) return r.call(e);
+          if ("function" == typeof e.next) return e;
+          if (!isNaN(e.length)) {
+            var o = -1,
+              i = function next() {
+                for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = false, next;
+                return next.value = t, next.done = true, next;
+              };
+            return i.next = i;
+          }
+        }
+        throw new TypeError(_typeof(e) + " is not iterable");
+      }
+      return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", {
+        value: GeneratorFunctionPrototype,
+        configurable: true
+      }), o(GeneratorFunctionPrototype, "constructor", {
+        value: GeneratorFunction,
+        configurable: true
+      }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) {
+        var e = "function" == typeof t && t.constructor;
+        return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name));
+      }, e.mark = function (t) {
+        return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t;
+      }, e.awrap = function (t) {
+        return {
+          __await: t
+        };
+      }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () {
+        return this;
+      }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) {
+        void 0 === i && (i = Promise);
+        var a = new AsyncIterator(wrap(t, r, n, o), i);
+        return e.isGeneratorFunction(r) ? a : a.next().then(function (t) {
+          return t.done ? t.value : a.next();
+        });
+      }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () {
+        return this;
+      }), define(g, "toString", function () {
+        return "[object Generator]";
+      }), e.keys = function (t) {
+        var e = Object(t),
+          r = [];
+        for (var n in e) r.push(n);
+        return r.reverse(), function next() {
+          for (; r.length;) {
+            var t = r.pop();
+            if (t in e) return next.value = t, next.done = false, next;
+          }
+          return next.done = true, next;
+        };
+      }, e.values = values, Context.prototype = {
+        constructor: Context,
+        reset: function reset(e) {
+          if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = false, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t);
+        },
+        stop: function stop() {
+          this.done = true;
+          var t = this.tryEntries[0].completion;
+          if ("throw" === t.type) throw t.arg;
+          return this.rval;
+        },
+        dispatchException: function dispatchException(e) {
+          if (this.done) throw e;
+          var r = this;
+          function handle(n, o) {
+            return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o;
+          }
+          for (var o = this.tryEntries.length - 1; o >= 0; --o) {
+            var i = this.tryEntries[o],
+              a = i.completion;
+            if ("root" === i.tryLoc) return handle("end");
+            if (i.tryLoc <= this.prev) {
+              var c = n.call(i, "catchLoc"),
+                u = n.call(i, "finallyLoc");
+              if (c && u) {
+                if (this.prev < i.catchLoc) return handle(i.catchLoc, true);
+                if (this.prev < i.finallyLoc) return handle(i.finallyLoc);
+              } else if (c) {
+                if (this.prev < i.catchLoc) return handle(i.catchLoc, true);
+              } else {
+                if (!u) throw Error("try statement without catch or finally");
+                if (this.prev < i.finallyLoc) return handle(i.finallyLoc);
+              }
+            }
+          }
+        },
+        abrupt: function abrupt(t, e) {
+          for (var r = this.tryEntries.length - 1; r >= 0; --r) {
+            var o = this.tryEntries[r];
+            if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) {
+              var i = o;
+              break;
+            }
+          }
+          i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null);
+          var a = i ? i.completion : {};
+          return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a);
+        },
+        complete: function complete(t, e) {
+          if ("throw" === t.type) throw t.arg;
+          return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y;
+        },
+        finish: function finish(t) {
+          for (var e = this.tryEntries.length - 1; e >= 0; --e) {
+            var r = this.tryEntries[e];
+            if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y;
+          }
+        },
+        "catch": function _catch(t) {
+          for (var e = this.tryEntries.length - 1; e >= 0; --e) {
+            var r = this.tryEntries[e];
+            if (r.tryLoc === t) {
+              var n = r.completion;
+              if ("throw" === n.type) {
+                var o = n.arg;
+                resetTryEntry(r);
+              }
+              return o;
+            }
+          }
+          throw Error("illegal catch attempt");
+        },
+        delegateYield: function delegateYield(e, r, n) {
+          return this.delegate = {
+            iterator: values(e),
+            resultName: r,
+            nextLoc: n
+          }, "next" === this.method && (this.arg = t), y;
+        }
+      }, e;
+    }
+    module.exports = _regeneratorRuntime, module.exports.__esModule = true, module.exports["default"] = module.exports;
+  })(regeneratorRuntime$1);
+  return regeneratorRuntime$1.exports;
+}
+
+var regenerator;
+var hasRequiredRegenerator;
+function requireRegenerator() {
+  if (hasRequiredRegenerator) return regenerator;
+  hasRequiredRegenerator = 1;
+  // TODO(Babel 8): Remove this file.
+
+  var runtime = requireRegeneratorRuntime()();
+  regenerator = runtime;
+
+  // Copied from https://github.com/facebook/regenerator/blob/main/packages/runtime/runtime.js#L736=
+  try {
+    regeneratorRuntime = runtime;
+  } catch (accidentalStrictMode) {
+    if ((typeof globalThis === "undefined" ? "undefined" : _typeof$2(globalThis)) === "object") {
+      globalThis.regeneratorRuntime = runtime;
+    } else {
+      Function("r", "regeneratorRuntime = r")(runtime);
+    }
+  }
+  return regenerator;
+}
+
+var regeneratorExports = requireRegenerator();
+var _regeneratorRuntime = /*@__PURE__*/getDefaultExportFromCjs(regeneratorExports);
 
 /**
  * Types of block
@@ -496,15 +885,10 @@ var Content2;
 })(Content2 || (Content2 = {}));
 var Content3;
 (function (Content3) {
-    //% block="ID"
     Content3[Content3["ID"] = 5] = "ID";
-    //% block="X center"
     Content3[Content3["xCenter"] = 1] = "xCenter";
-    //% block="Y center"
     Content3[Content3["yCenter"] = 2] = "yCenter";
-    //% block="width"
     Content3[Content3["width"] = 3] = "width";
-    //% block="height"
     Content3[Content3["height"] = 4] = "height";
 })(Content3 || (Content3 = {}));
 var Content4;
@@ -522,9 +906,7 @@ var Content4;
 })(Content4 || (Content4 = {}));
 var HUSKYLENSResultType_t;
 (function (HUSKYLENSResultType_t) {
-    //%block="frame"
     HUSKYLENSResultType_t[HUSKYLENSResultType_t["HUSKYLENSResultBlock"] = 1] = "HUSKYLENSResultBlock";
-    //%block="arrow"
     HUSKYLENSResultType_t[HUSKYLENSResultType_t["HUSKYLENSResultArrow"] = 2] = "HUSKYLENSResultArrow";
 })(HUSKYLENSResultType_t || (HUSKYLENSResultType_t = {}));
 var HUSKYLENSMode;
@@ -626,20 +1008,16 @@ class HuskylensProtocol {
     /**
      * HuskyLens requests data and stores it in the result.
      */
-    //% block="HuskyLens request data once and save into the result"
-    //% weight=80
-    request() {
+    async request() {
         if (!this.mbitMore.isConnected()) {
             return;
         }
         this.protocolWriteCommand(protocolCommand.COMMAND_REQUEST);
-        this.processReturn();
+        await this.processReturn();
     }
     /**
      * HuskyLens get the number of the learned ID from result.
      */
-    //%block="HuskyLens get a total number of learned IDs from the result"
-    //% weight=79
     getIds() {
         if (!this.mbitMore.isConnected()) {
             return 0;
@@ -1621,15 +1999,30 @@ var en = {
 	"huskylens.name": "HuskyLens",
 	"huskylens.initI2c": "initialize HuskyLens",
 	"huskylens.selectAlgorithm": "switch algorithm to [algorithm]",
+	"huskylens.requestDataOnce": "request data once and save into the result",
+	"huskylens.getLearnedIDCount": "get total number of learned IDs from the result",
+	"huskylens.isObjectOnScreen": "check if [objectType] is on screen from the result",
+	"huskylens.getBoxNearCenter": "get [parameter] of box closest to screen center from the result",
+	"huskylens.learnIDAuto": "learn ID [id] once automatically",
+	"huskylens.setIDName": "set name of ID [id] as [name]",
+	"huskylens.clearText": "clear all custom texts on screen",
+	"huskylens.takePhoto": "take [type] and save to SD card",
 	"huskylens.menu.algorithm.face_rec": "face recognition",
 	"huskylens.menu.algorithm.obj_trac": "object tracking",
 	"huskylens.menu.algorithm.obj_rec": "object recognition",
-	"huskylens.selectAlgomenu.algorithm.line_trac": "line tracking",
+	"huskylens.menu.algorithm.line_trac": "line tracking",
 	"huskylens.menu.algorithm.color_rec": "color recognition",
 	"huskylens.menu.algorithm.tag_rec": "tag recognition",
 	"huskylens.menu.algorithm.obj_class": "object classification",
 	"huskylens.menu.algorithm.qr_rec": "QR code recogmition (EDU only)",
-	"huskylens.menu.algorithm.bar_rec": "barcode recognition (EDU only)"
+	"huskylens.menu.algorithm.bar_rec": "barcode recognition (EDU only)",
+	"huskylens.menu.resultTypeMenu.frame": "frame",
+	"huskylens.menu.resultTypeMenu.arrow": "arrow",
+	"huskylens.menu.parameterMenu.id": "ID",
+	"huskylens.menu.parameterMenu.xCenter": "X center",
+	"huskylens.menu.parameterMenu.yCenter": "Y center",
+	"huskylens.menu.parameterMenu.width": "width",
+	"huskylens.menu.parameterMenu.height": "height"
 };
 
 function _callSuper(t, o, e) { return o = _getPrototypeOf(o), _possibleConstructorReturn(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor) : o.apply(t, e)); }
@@ -1726,6 +2119,249 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
               defaultValue: protocolAlgorithm.ALGORITHM_OBJECT_TRACKING
             }
           }
+        }, {
+          opcode: 'requestDataOnce',
+          blockType: BlockType.COMMAND,
+          text: formatMessage({
+            id: 'huskylens.requestDataOnce',
+            default: 'request data once and save into the result'
+          })
+        }, {
+          opcode: 'getLearnedIDCount',
+          blockType: BlockType.REPORTER,
+          text: formatMessage({
+            id: 'huskylens.getLearnedIDCount',
+            default: 'get total number of learned IDs from the result'
+          })
+        }, {
+          opcode: 'isObjectOnScreen',
+          blockType: BlockType.BOOLEAN,
+          text: formatMessage({
+            id: 'huskylens.isObjectOnScreen',
+            default: 'check if [objectType] is on screen from the result'
+          }),
+          arguments: {
+            objectType: {
+              type: ArgumentType.STRING,
+              menu: 'resultTypeMenu',
+              defaultValue: 'frame'
+            }
+          }
+        }, {
+          opcode: 'getBoxNearCenter',
+          blockType: BlockType.REPORTER,
+          text: formatMessage({
+            id: 'huskylens.getBoxNearCenter',
+            default: 'get [parameter] of box closest to screen center from the result'
+          }),
+          arguments: {
+            parameter: {
+              type: ArgumentType.STRING,
+              menu: 'parameterMenu',
+              defaultValue: 'ID'
+            }
+          }
+          // },
+          // {
+          //     opcode: 'getArrowNearCenter',
+          //     blockType: BlockType.REPORTER,
+          //     text: formatMessage({
+          //         id: 'huskylens.getArrowNearCenter',
+          //         default: 'get [parameter] of arrow closest to screen center from the result'
+          //     }),
+          //     arguments: {
+          //         parameter: {
+          //             type: ArgumentType.STRING,
+          //             menu: 'parameterMenu',
+          //             defaultValue: 'x'
+          //         }
+          //     }
+          // },
+          // {
+          //     opcode: 'isIDLearned',
+          //     blockType: BlockType.BOOLEAN,
+          //     text: formatMessage({
+          //         id: 'huskylens.isIDLearned',
+          //         default: 'check if ID [id] is learned from the result'
+          //     }),
+          //     arguments: {
+          //         id: {
+          //             type: ArgumentType.NUMBER,
+          //             defaultValue: 1
+          //         }
+          //     }
+          // },
+          // {
+          //     opcode: 'isIDObjectOnScreen',
+          //     blockType: BlockType.BOOLEAN,
+          //     text: formatMessage({
+          //         id: 'huskylens.isIDObjectOnScreen',
+          //         default: 'check if ID [id] [objectType] is on screen from the result'
+          //     }),
+          //     arguments: {
+          //         id: {type: ArgumentType.NUMBER, defaultValue: 1},
+          //         objectType: {type: ArgumentType.STRING, menu: 'resultTypeMenu', defaultValue: 'frame'}
+          //     }
+          // },
+          // {
+          //     opcode: 'getBoxParamByID',
+          //     blockType: BlockType.REPORTER,
+          //     text: formatMessage({
+          //         id: 'huskylens.getBoxParamByID',
+          //         default: 'get [parameter] of ID [id] box from the result'
+          //     }),
+          //     arguments: {
+          //         parameter: {type: ArgumentType.STRING, menu: 'parameterMenu', defaultValue: 'x'},
+          //         id: {type: ArgumentType.NUMBER, defaultValue: 1}
+          //     }
+          // },
+          // {
+          //     opcode: 'getArrowParamByID',
+          //     blockType: BlockType.REPORTER,
+          //     text: formatMessage({
+          //         id: 'huskylens.getArrowParamByID',
+          //         default: 'get [parameter] of ID [id] arrow from the result'
+          //     }),
+          //     arguments: {
+          //         parameter: {type: ArgumentType.STRING, menu: 'parameterMenu', defaultValue: 'x'},
+          //         id: {type: ArgumentType.NUMBER, defaultValue: 1}
+          //     }
+          // },
+          // {
+          //     opcode: 'getTotalCount',
+          //     blockType: BlockType.REPORTER,
+          //     text: formatMessage({
+          //         id: 'huskylens.getTotalCount',
+          //         default: 'get total number of [objectType] from the result'
+          //     }),
+          //     arguments: {
+          //         objectType: {type: ArgumentType.STRING, menu: 'resultTypeMenu', defaultValue: 'frame'}
+          //     }
+          // },
+          // {
+          //     opcode: 'getNthBoxParam',
+          //     blockType: BlockType.REPORTER,
+          //     text: formatMessage({
+          //         id: 'huskylens.getNthBoxParam',
+          //         default: 'get [parameter] of No. [index] box from the result'
+          //     }),
+          //     arguments: {
+          //         parameter: {type: ArgumentType.STRING, menu: 'parameterMenu', defaultValue: 'x'},
+          //         index: {type: ArgumentType.NUMBER, defaultValue: 1}
+          //     }
+          // },
+          // {
+          //     opcode: 'getNthArrowParam',
+          //     blockType: BlockType.REPORTER,
+          //     text: formatMessage({
+          //         id: 'huskylens.getNthArrowParam',
+          //         default: 'get [parameter] of No. [index] arrow from the result'
+          //     }),
+          //     arguments: {
+          //         parameter: {type: ArgumentType.STRING, menu: 'parameterMenu', defaultValue: 'x'},
+          //         index: {type: ArgumentType.NUMBER, defaultValue: 1}
+          //     }
+          // },
+          // {
+          //     opcode: 'getTotalByID',
+          //     blockType: BlockType.REPORTER,
+          //     text: formatMessage({
+          //         id: 'huskylens.getTotalByID',
+          //         default: 'get total number of ID [id] [objectType] from the result'
+          //     }),
+          //     arguments: {
+          //         id: {type: ArgumentType.NUMBER, defaultValue: 1},
+          //         objectType: {type: ArgumentType.STRING, menu: 'resultTypeMenu', defaultValue: 'frame'}
+          //     }
+          // },
+          // {
+          //     opcode: 'getNthBoxParamByID',
+          //     blockType: BlockType.REPORTER,
+          //     text: formatMessage({
+          //         id: 'huskylens.getNthBoxParamByID',
+          //         default: 'get [parameter] of ID [id] No. [index] box from the result'
+          //     }),
+          //     arguments: {
+          //         parameter: {type: ArgumentType.STRING, menu: 'parameterMenu', defaultValue: 'x'},
+          //         id: {type: ArgumentType.NUMBER, defaultValue: 1},
+          //         index: {type: ArgumentType.NUMBER, defaultValue: 1}
+          //     }
+          // },
+          // {
+          //     opcode: 'getNthArrowParamByID',
+          //     blockType: BlockType.REPORTER,
+          //     text: formatMessage({
+          //         id: 'huskylens.getNthArrowParamByID',
+          //         default: 'get [parameter] of ID [id] No. [index] arrow from the result'
+          //     }),
+          //     arguments: {
+          //         parameter: {type: ArgumentType.STRING, menu: 'parameterMenu', defaultValue: 'x'},
+          //         id: {type: ArgumentType.NUMBER, defaultValue: 1},
+          //         index: {type: ArgumentType.NUMBER, defaultValue: 1}
+          //     }
+          // },
+          // {
+          //     opcode: 'learnIDAuto',
+          //     blockType: BlockType.COMMAND,
+          //     text: formatMessage({id: 'huskylens.learnIDAuto', default: 'learn ID [id] once automatically'}),
+          //     arguments: {
+          //         id: {type: ArgumentType.NUMBER, defaultValue: 1}
+          //     }
+          // },
+          // {
+          //     opcode: 'forgetAll',
+          //     blockType: BlockType.COMMAND,
+          //     text: formatMessage({
+          //         id: 'huskylens.forgetAll',
+          //         default: 'forget all learning data of the current algorithm'
+          //     })
+          // },
+          // {
+          //     opcode: 'setIDName',
+          //     blockType: BlockType.COMMAND,
+          //     text: formatMessage({id: 'huskylens.setIDName', default: 'set name of ID [id] as [name]'}),
+          //     arguments: {
+          //         id: {type: ArgumentType.NUMBER, defaultValue: 1},
+          //         name: {type: ArgumentType.STRING, defaultValue: 'DFRobot'}
+          //     }
+          // },
+          // {
+          //     opcode: 'showTextOnScreen',
+          //     blockType: BlockType.COMMAND,
+          //     text: formatMessage({
+          //         id: 'huskylens.showTextOnScreen',
+          //         default: 'show text [text] at x [x] y [y] on screen'
+          //     }),
+          //     arguments: {
+          //         text: {type: ArgumentType.STRING, defaultValue: 'DFRobot'},
+          //         x: {type: ArgumentType.NUMBER, defaultValue: 150},
+          //         y: {type: ArgumentType.NUMBER, defaultValue: 30}
+          //     }
+          // },
+          // {
+          //     opcode: 'clearText',
+          //     blockType: BlockType.COMMAND,
+          //     text: formatMessage({id: 'huskylens.clearText', default: 'clear all custom texts on screen'})
+          // },
+          // {
+          //     opcode: 'takePhoto',
+          //     blockType: BlockType.COMMAND,
+          //     text: formatMessage({id: 'huskylens.takePhoto', default: 'take [type] and save to SD card'}),
+          //     arguments: {
+          //         type: {type: ArgumentType.STRING, defaultValue: 'photo'}
+          //     }
+          // },
+          // {
+          //     opcode: 'saveModelToSD',
+          //     blockType: BlockType.COMMAND,
+          //     text: formatMessage({
+          //         id: 'huskylens.saveModelToSD',
+          //         default: '[command] current algorithm data as model No. [data] on SD card'
+          //     }),
+          //     arguments: {
+          //         command: {type: ArgumentType.STRING, defaultValue: 'save'},
+          //         data: {type: ArgumentType.NUMBER, defaultValue: 0}
+          //     }
         }],
         menus: {
           algorithmMenu: {
@@ -1750,7 +2386,7 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
               value: protocolAlgorithm.ALGORITHM_OBJECT_RECOGNITION.toString()
             }, {
               text: formatMessage({
-                id: 'huskylens.selectAlgomenu.algorithm.line_trac',
+                id: 'huskylens.menu.algorithm.line_trac',
                 default: 'line tracking'
               }),
               value: protocolAlgorithm.ALGORITHM_LINE_TRACKING.toString()
@@ -1785,14 +2421,114 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
               }),
               value: protocolAlgorithm.BARCODERECOGNITION.toString()
             }]
+          },
+          resultTypeMenu: {
+            acceptReporters: false,
+            items: [{
+              text: formatMessage({
+                id: 'huskylens.menu.resultTypeMenu.frame',
+                default: 'frame'
+              }),
+              value: HUSKYLENSResultType_t.HUSKYLENSResultBlock.toString()
+            }, {
+              text: formatMessage({
+                id: 'huskylens.menu.resultTypeMenu.arrow',
+                default: 'arrow'
+              }),
+              value: HUSKYLENSResultType_t.HUSKYLENSResultArrow.toString()
+            }]
+          },
+          parameterMenu: {
+            acceptReporters: false,
+            items: [{
+              text: formatMessage({
+                id: 'huskylens.menu.parameterMenu.id',
+                default: 'ID'
+              }),
+              value: Content3.ID.toString()
+            }, {
+              text: formatMessage({
+                id: 'huskylens.menu.parameterMenu.xCenter',
+                default: 'X center'
+              }),
+              value: Content3.xCenter.toString()
+            }, {
+              text: formatMessage({
+                id: 'huskylens.menu.parameterMenu.yCenter',
+                default: 'Y center'
+              }),
+              value: Content3.yCenter.toString()
+            }, {
+              text: formatMessage({
+                id: 'huskylens.menu.parameterMenu.width',
+                default: 'width'
+              }),
+              value: Content3.width.toString()
+            }, {
+              text: formatMessage({
+                id: 'huskylens.menu.parameterMenu.height',
+                default: 'height'
+              }),
+              value: Content3.height.toString()
+            }]
           }
         }
       };
     }
   }, {
     key: "selectAlgorithm",
-    value: function selectAlgorithm(args) {
-      this.initMode(Number(args.algorithm));
+    value: function () {
+      var _selectAlgorithm = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime.mark(function _callee(args) {
+        return _regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return this.initMode(Number(args.algorithm));
+            case 2:
+            case "end":
+              return _context.stop();
+          }
+        }, _callee, this);
+      }));
+      function selectAlgorithm(_x) {
+        return _selectAlgorithm.apply(this, arguments);
+      }
+      return selectAlgorithm;
+    }()
+  }, {
+    key: "requestDataOnce",
+    value: function () {
+      var _requestDataOnce = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime.mark(function _callee2() {
+        return _regeneratorRuntime.wrap(function _callee2$(_context2) {
+          while (1) switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return this.request();
+            case 2:
+            case "end":
+              return _context2.stop();
+          }
+        }, _callee2, this);
+      }));
+      function requestDataOnce() {
+        return _requestDataOnce.apply(this, arguments);
+      }
+      return requestDataOnce;
+    }()
+  }, {
+    key: "getLearnedIDCount",
+    value: function getLearnedIDCount() {
+      return this.getIds();
+    }
+  }, {
+    key: "isObjectOnScreen",
+    value: function isObjectOnScreen(args) {
+      this.isAppear_s(Number(args.Ht));
+    }
+  }, {
+    key: "getBoxNearCenter",
+    value: function getBoxNearCenter(args) {
+      this.readBox_s(args.data);
     }
   }], [{
     key: "formatMessage",

@@ -1,6 +1,7 @@
+/* eslint-disable camelcase */
 import BlockType from '../../extension-support/block-type';
 import ArgumentType from '../../extension-support/argument-type';
-import {HuskylensProtocol, protocolAlgorithm} from './protocol.ts';
+import {HuskylensProtocol, HUSKYLENSResultType_t, Content3, protocolAlgorithm} from './protocol.ts';
 
 import en from './translations/en.json';
 
@@ -123,7 +124,255 @@ class ExtensionBlocks extends HuskylensProtocol {
                             defaultValue: protocolAlgorithm.ALGORITHM_OBJECT_TRACKING
                         }
                     }
-                }],
+                },
+                {
+                    opcode: 'requestDataOnce',
+                    blockType: BlockType.COMMAND,
+                    text: formatMessage({
+                        id: 'huskylens.requestDataOnce',
+                        default: 'request data once and save into the result'
+                    })
+                },
+                {
+                    opcode: 'getLearnedIDCount',
+                    blockType: BlockType.REPORTER,
+                    text: formatMessage({
+                        id: 'huskylens.getLearnedIDCount',
+                        default: 'get total number of learned IDs from the result'
+                    })
+                },
+                {
+                    opcode: 'isObjectOnScreen',
+                    blockType: BlockType.BOOLEAN,
+                    text: formatMessage({
+                        id: 'huskylens.isObjectOnScreen',
+                        default: 'check if [objectType] is on screen from the result'
+                    }),
+                    arguments: {
+                        objectType: {
+                            type: ArgumentType.STRING,
+                            menu: 'resultTypeMenu',
+                            defaultValue: 'frame'
+                        }
+                    }
+                },
+                {
+                    opcode: 'getBoxNearCenter',
+                    blockType: BlockType.REPORTER,
+                    text: formatMessage({
+                        id: 'huskylens.getBoxNearCenter',
+                        default: 'get [parameter] of box closest to screen center from the result'
+                    }),
+                    arguments: {
+                        parameter: {
+                            type: ArgumentType.STRING,
+                            menu: 'parameterMenu',
+                            defaultValue: 'ID'
+                        }
+                    }
+                // },
+                // {
+                //     opcode: 'getArrowNearCenter',
+                //     blockType: BlockType.REPORTER,
+                //     text: formatMessage({
+                //         id: 'huskylens.getArrowNearCenter',
+                //         default: 'get [parameter] of arrow closest to screen center from the result'
+                //     }),
+                //     arguments: {
+                //         parameter: {
+                //             type: ArgumentType.STRING,
+                //             menu: 'parameterMenu',
+                //             defaultValue: 'x'
+                //         }
+                //     }
+                // },
+                // {
+                //     opcode: 'isIDLearned',
+                //     blockType: BlockType.BOOLEAN,
+                //     text: formatMessage({
+                //         id: 'huskylens.isIDLearned',
+                //         default: 'check if ID [id] is learned from the result'
+                //     }),
+                //     arguments: {
+                //         id: {
+                //             type: ArgumentType.NUMBER,
+                //             defaultValue: 1
+                //         }
+                //     }
+                // },
+                // {
+                //     opcode: 'isIDObjectOnScreen',
+                //     blockType: BlockType.BOOLEAN,
+                //     text: formatMessage({
+                //         id: 'huskylens.isIDObjectOnScreen',
+                //         default: 'check if ID [id] [objectType] is on screen from the result'
+                //     }),
+                //     arguments: {
+                //         id: {type: ArgumentType.NUMBER, defaultValue: 1},
+                //         objectType: {type: ArgumentType.STRING, menu: 'resultTypeMenu', defaultValue: 'frame'}
+                //     }
+                // },
+                // {
+                //     opcode: 'getBoxParamByID',
+                //     blockType: BlockType.REPORTER,
+                //     text: formatMessage({
+                //         id: 'huskylens.getBoxParamByID',
+                //         default: 'get [parameter] of ID [id] box from the result'
+                //     }),
+                //     arguments: {
+                //         parameter: {type: ArgumentType.STRING, menu: 'parameterMenu', defaultValue: 'x'},
+                //         id: {type: ArgumentType.NUMBER, defaultValue: 1}
+                //     }
+                // },
+                // {
+                //     opcode: 'getArrowParamByID',
+                //     blockType: BlockType.REPORTER,
+                //     text: formatMessage({
+                //         id: 'huskylens.getArrowParamByID',
+                //         default: 'get [parameter] of ID [id] arrow from the result'
+                //     }),
+                //     arguments: {
+                //         parameter: {type: ArgumentType.STRING, menu: 'parameterMenu', defaultValue: 'x'},
+                //         id: {type: ArgumentType.NUMBER, defaultValue: 1}
+                //     }
+                // },
+                // {
+                //     opcode: 'getTotalCount',
+                //     blockType: BlockType.REPORTER,
+                //     text: formatMessage({
+                //         id: 'huskylens.getTotalCount',
+                //         default: 'get total number of [objectType] from the result'
+                //     }),
+                //     arguments: {
+                //         objectType: {type: ArgumentType.STRING, menu: 'resultTypeMenu', defaultValue: 'frame'}
+                //     }
+                // },
+                // {
+                //     opcode: 'getNthBoxParam',
+                //     blockType: BlockType.REPORTER,
+                //     text: formatMessage({
+                //         id: 'huskylens.getNthBoxParam',
+                //         default: 'get [parameter] of No. [index] box from the result'
+                //     }),
+                //     arguments: {
+                //         parameter: {type: ArgumentType.STRING, menu: 'parameterMenu', defaultValue: 'x'},
+                //         index: {type: ArgumentType.NUMBER, defaultValue: 1}
+                //     }
+                // },
+                // {
+                //     opcode: 'getNthArrowParam',
+                //     blockType: BlockType.REPORTER,
+                //     text: formatMessage({
+                //         id: 'huskylens.getNthArrowParam',
+                //         default: 'get [parameter] of No. [index] arrow from the result'
+                //     }),
+                //     arguments: {
+                //         parameter: {type: ArgumentType.STRING, menu: 'parameterMenu', defaultValue: 'x'},
+                //         index: {type: ArgumentType.NUMBER, defaultValue: 1}
+                //     }
+                // },
+                // {
+                //     opcode: 'getTotalByID',
+                //     blockType: BlockType.REPORTER,
+                //     text: formatMessage({
+                //         id: 'huskylens.getTotalByID',
+                //         default: 'get total number of ID [id] [objectType] from the result'
+                //     }),
+                //     arguments: {
+                //         id: {type: ArgumentType.NUMBER, defaultValue: 1},
+                //         objectType: {type: ArgumentType.STRING, menu: 'resultTypeMenu', defaultValue: 'frame'}
+                //     }
+                // },
+                // {
+                //     opcode: 'getNthBoxParamByID',
+                //     blockType: BlockType.REPORTER,
+                //     text: formatMessage({
+                //         id: 'huskylens.getNthBoxParamByID',
+                //         default: 'get [parameter] of ID [id] No. [index] box from the result'
+                //     }),
+                //     arguments: {
+                //         parameter: {type: ArgumentType.STRING, menu: 'parameterMenu', defaultValue: 'x'},
+                //         id: {type: ArgumentType.NUMBER, defaultValue: 1},
+                //         index: {type: ArgumentType.NUMBER, defaultValue: 1}
+                //     }
+                // },
+                // {
+                //     opcode: 'getNthArrowParamByID',
+                //     blockType: BlockType.REPORTER,
+                //     text: formatMessage({
+                //         id: 'huskylens.getNthArrowParamByID',
+                //         default: 'get [parameter] of ID [id] No. [index] arrow from the result'
+                //     }),
+                //     arguments: {
+                //         parameter: {type: ArgumentType.STRING, menu: 'parameterMenu', defaultValue: 'x'},
+                //         id: {type: ArgumentType.NUMBER, defaultValue: 1},
+                //         index: {type: ArgumentType.NUMBER, defaultValue: 1}
+                //     }
+                // },
+                // {
+                //     opcode: 'learnIDAuto',
+                //     blockType: BlockType.COMMAND,
+                //     text: formatMessage({id: 'huskylens.learnIDAuto', default: 'learn ID [id] once automatically'}),
+                //     arguments: {
+                //         id: {type: ArgumentType.NUMBER, defaultValue: 1}
+                //     }
+                // },
+                // {
+                //     opcode: 'forgetAll',
+                //     blockType: BlockType.COMMAND,
+                //     text: formatMessage({
+                //         id: 'huskylens.forgetAll',
+                //         default: 'forget all learning data of the current algorithm'
+                //     })
+                // },
+                // {
+                //     opcode: 'setIDName',
+                //     blockType: BlockType.COMMAND,
+                //     text: formatMessage({id: 'huskylens.setIDName', default: 'set name of ID [id] as [name]'}),
+                //     arguments: {
+                //         id: {type: ArgumentType.NUMBER, defaultValue: 1},
+                //         name: {type: ArgumentType.STRING, defaultValue: 'DFRobot'}
+                //     }
+                // },
+                // {
+                //     opcode: 'showTextOnScreen',
+                //     blockType: BlockType.COMMAND,
+                //     text: formatMessage({
+                //         id: 'huskylens.showTextOnScreen',
+                //         default: 'show text [text] at x [x] y [y] on screen'
+                //     }),
+                //     arguments: {
+                //         text: {type: ArgumentType.STRING, defaultValue: 'DFRobot'},
+                //         x: {type: ArgumentType.NUMBER, defaultValue: 150},
+                //         y: {type: ArgumentType.NUMBER, defaultValue: 30}
+                //     }
+                // },
+                // {
+                //     opcode: 'clearText',
+                //     blockType: BlockType.COMMAND,
+                //     text: formatMessage({id: 'huskylens.clearText', default: 'clear all custom texts on screen'})
+                // },
+                // {
+                //     opcode: 'takePhoto',
+                //     blockType: BlockType.COMMAND,
+                //     text: formatMessage({id: 'huskylens.takePhoto', default: 'take [type] and save to SD card'}),
+                //     arguments: {
+                //         type: {type: ArgumentType.STRING, defaultValue: 'photo'}
+                //     }
+                // },
+                // {
+                //     opcode: 'saveModelToSD',
+                //     blockType: BlockType.COMMAND,
+                //     text: formatMessage({
+                //         id: 'huskylens.saveModelToSD',
+                //         default: '[command] current algorithm data as model No. [data] on SD card'
+                //     }),
+                //     arguments: {
+                //         command: {type: ArgumentType.STRING, defaultValue: 'save'},
+                //         data: {type: ArgumentType.NUMBER, defaultValue: 0}
+                //     }
+                }
+            ],
             menus: {
                 algorithmMenu: {
                     acceptReporters: false,
@@ -151,7 +400,7 @@ class ExtensionBlocks extends HuskylensProtocol {
                         },
                         {
                             text: formatMessage({
-                                id: 'huskylens.selectAlgomenu.algorithm.line_trac',
+                                id: 'huskylens.menu.algorithm.line_trac',
                                 default: 'line tracking'
                             }),
                             value: protocolAlgorithm.ALGORITHM_LINE_TRACKING.toString()
@@ -192,16 +441,89 @@ class ExtensionBlocks extends HuskylensProtocol {
                             value: protocolAlgorithm.BARCODERECOGNITION.toString()
                         }
                     ]
+                },
+                resultTypeMenu: {
+                    acceptReporters: false,
+                    items: [
+                        {
+                            text: formatMessage({
+                                id: 'huskylens.menu.resultTypeMenu.frame',
+                                default: 'frame'
+                            }),
+                            value: HUSKYLENSResultType_t.HUSKYLENSResultBlock.toString()
+                        },
+                        {
+                            text: formatMessage({
+                                id: 'huskylens.menu.resultTypeMenu.arrow',
+                                default: 'arrow'
+                            }),
+                            value: HUSKYLENSResultType_t.HUSKYLENSResultArrow.toString()
+                        }
+                    ]
+                },
+                parameterMenu: {
+                    acceptReporters: false,
+                    items: [
+                        {
+                            text: formatMessage({
+                                id: 'huskylens.menu.parameterMenu.id',
+                                default: 'ID'
+                            }),
+                            value: Content3.ID.toString()
+                        },
+                        {
+                            text: formatMessage({
+                                id: 'huskylens.menu.parameterMenu.xCenter',
+                                default: 'X center'
+                            }),
+                            value: Content3.xCenter.toString()
+                        },
+                        {
+                            text: formatMessage({
+                                id: 'huskylens.menu.parameterMenu.yCenter',
+                                default: 'Y center'
+                            }),
+                            value: Content3.yCenter.toString()
+                        },
+                        {
+                            text: formatMessage({
+                                id: 'huskylens.menu.parameterMenu.width',
+                                default: 'width'
+                            }),
+                            value: Content3.width.toString()
+                        },
+                        {
+                            text: formatMessage({
+                                id: 'huskylens.menu.parameterMenu.height',
+                                default: 'height'
+                            }),
+                            value: Content3.height.toString()
+                        }
+                    ]
                 }
             }
         };
     }
 
-    selectAlgorithm (args) {
-        this.initMode(Number(args.algorithm));
+    async selectAlgorithm (args) {
+        await this.initMode(Number(args.algorithm));
     }
 
-    
+    async requestDataOnce () {
+        await this.request();
+    }
+
+    getLearnedIDCount () {
+        return this.getIds();
+    }
+
+    isObjectOnScreen (args) {
+        this.isAppear_s(Number(args.Ht));
+    }
+
+    getBoxNearCenter (args) {
+        this.readBox_s(args.data);
+    }
 }
 
 export {ExtensionBlocks as default, ExtensionBlocks as blockClass};

@@ -64,16 +64,11 @@ enum Content2 {
     yTarget = 4
 }
 
-enum Content3 {
-    //% block="ID"
+export enum Content3 {
     ID = 5,
-    //% block="X center"
     xCenter = 1,
-    //% block="Y center"
     yCenter = 2,
-    //% block="width"
     width = 3,
-    //% block="height"
     height = 4
 }
 
@@ -91,10 +86,8 @@ enum Content4 {
 
 }
 
-enum HUSKYLENSResultType_t {
-    //%block="frame"
+export enum HUSKYLENSResultType_t {
     HUSKYLENSResultBlock = 1,
-    //%block="arrow"
     HUSKYLENSResultArrow = 2,
 }
 
@@ -223,20 +216,16 @@ export class HuskylensProtocol {
     /**
      * HuskyLens requests data and stores it in the result.
      */
-    //% block="HuskyLens request data once and save into the result"
-    //% weight=80
-    request(): void {
+    async request(): Promise<void> {
         if (!this.mbitMore.isConnected()) {
             return;
         }
         this.protocolWriteCommand(protocolCommand.COMMAND_REQUEST);
-        this.processReturn();
+        await this.processReturn();
     }
     /**
      * HuskyLens get the number of the learned ID from result.
      */
-    //%block="HuskyLens get a total number of learned IDs from the result"
-    //% weight=79
     getIds(): number {
         if (!this.mbitMore.isConnected()) {
             return 0;
