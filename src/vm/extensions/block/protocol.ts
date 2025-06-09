@@ -177,6 +177,7 @@ export class HuskylensProtocol {
         } else {
             throw Error('microbit-more extension not found');
         }
+        runtime.registerPeripheralExtension('huskylens', this.mbitMore);
     }
 
     /**

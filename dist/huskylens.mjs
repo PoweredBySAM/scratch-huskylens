@@ -55,6 +55,9 @@ var entry = {
   setFormatMessage: function setFormatMessage(formatter) {
     formatMessage$1 = formatter;
   },
+  launchPeripheralConnectionFlow: true,
+  useAutoScan: false,
+  helpLink: 'https://github.com/Rbel12b/scratch-huskylens/blob/main/README.md',
   translationMap: translations$1
 };
 
@@ -969,6 +972,7 @@ class HuskylensProtocol {
         else {
             throw Error('microbit-more extension not found');
         }
+        runtime.registerPeripheralExtension('huskylens', this.mbitMore);
     }
     /**
      * HuskyLens init I2C until success
@@ -2055,7 +2059,7 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
         id: ExtensionBlocks.EXTENSION_ID,
         name: ExtensionBlocks.EXTENSION_NAME,
         extensionURL: ExtensionBlocks.extensionURL,
-        showStatusButton: false,
+        showStatusButton: true,
         color1: '#e7660b',
         color2: '#e7660b',
         blocks: [{

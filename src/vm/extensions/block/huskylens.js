@@ -100,7 +100,7 @@ class ExtensionBlocks extends HuskylensProtocol {
             id: ExtensionBlocks.EXTENSION_ID,
             name: ExtensionBlocks.EXTENSION_NAME,
             extensionURL: ExtensionBlocks.extensionURL,
-            showStatusButton: false,
+            showStatusButton: true,
             color1: '#e7660b',
             color2: '#e7660b',
             blocks: [

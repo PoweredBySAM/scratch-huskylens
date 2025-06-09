@@ -47,6 +47,9 @@ const entry = {
     setFormatMessage: formatter => {
         formatMessage = formatter;
     },
+    launchPeripheralConnectionFlow: true,
+    useAutoScan: false,
+    helpLink: 'https://github.com/Rbel12b/scratch-huskylens/blob/main/README.md',
     translationMap: translations
 };
 
