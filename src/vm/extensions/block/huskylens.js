@@ -69,7 +69,7 @@ class ExtensionBlocks extends HuskylensProtocol {
      * URL to get this extension.
      * @type {string}
      */
-    extensionURL = '';
+    extensionURL = 'https://rbel12b.github.io/Scratch/dist/huskylens.mjs';
 
 
     /**
@@ -99,7 +99,7 @@ class ExtensionBlocks extends HuskylensProtocol {
         return {
             id: ExtensionBlocks.EXTENSION_ID,
             name: ExtensionBlocks.EXTENSION_NAME,
-            extensionURL: ExtensionBlocks.extensionURL,
+            extensionURL: this.extensionURL,
             showStatusButton: true,
             color1: '#e7660b',
             color2: '#e7660b',
