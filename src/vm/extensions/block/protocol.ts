@@ -388,9 +388,6 @@ export class HuskylensProtocol {
      * HuskyLens get the box or arrow total number from result.
      * 
      */
-    //%block="HuskyLens get a total number of %Ht total from the result"
-    //% weight=90
-    //% advanced=true
     getBox(Ht: HUSKYLENSResultType_t): number {
         if (!this.mbitMore.isConnected()) {
             return 0;
@@ -408,9 +405,6 @@ export class HuskylensProtocol {
      * HuskyLens get the parameter of Nth box from result.
      * @param index to index ,eg: 1
      */
-    //% block="HuskyLens get $data of the No. $index frame from the result"
-    //% weight=60
-    //% advanced=true
     readBox_ss(index: number, data: Content3): number {
         if (!this.mbitMore.isConnected()) {
             return 0;
@@ -438,9 +432,6 @@ export class HuskylensProtocol {
      * HuskyLens get the parameter of the Nth arrow from result.
      * @param index to index ,eg: 1
     */
-    //% block="HuskyLens get $data of the No. $index arrow from the result"
-    //% weight=60
-    //% advanced=true
     readArrow_ss(index: number, data: Content4): number {
         if (!this.mbitMore.isConnected()) {
             return 0;
@@ -468,9 +459,6 @@ export class HuskylensProtocol {
      * HuskyLens get the total number of box or arrow from result.
      * @param id to id ,eg: 1
      */
-    //%block="HuskyLens get a total number of ID %id %Ht total from the result"
-    //% weight=55
-    //% advanced=true
     getBox_S(id: number, Ht: HUSKYLENSResultType_t): number {
         if (!this.mbitMore.isConnected()) {
             return 0;
@@ -489,9 +477,6 @@ export class HuskylensProtocol {
      * @param id to id ,eg: 1
      * @param index to index ,eg: 1
      */
-    //%block="HuskyLens get $number1 of the ID $id  No. $index frame from the result"
-    //% weight=45
-    //% advanced=true
     readeBox_index(id: number, index: number, number1: Content1): number {
         if (!this.mbitMore.isConnected()) {
             return 0;
