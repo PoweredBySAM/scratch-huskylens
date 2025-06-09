@@ -118,7 +118,7 @@ class ExtensionBlocks extends HuskylensProtocol {
                     blockType: BlockType.COMMAND,
                     text: formatMessage({
                         id: 'huskylens.selectAlgorithm',
-                        default: 'switch algorithm to [algorithm]'
+                        default: 'set algorithm to [algorithm]'
                     }),
                     arguments: {
                         algorithm: {
@@ -133,7 +133,7 @@ class ExtensionBlocks extends HuskylensProtocol {
                     blockType: BlockType.COMMAND,
                     text: formatMessage({
                         id: 'huskylens.requestDataOnce',
-                        default: 'request data from device'
+                        default: 'get data from HuskyLens'
                     })
                 },
                 {
@@ -141,7 +141,7 @@ class ExtensionBlocks extends HuskylensProtocol {
                     blockType: BlockType.REPORTER,
                     text: formatMessage({
                         id: 'huskylens.getLearnedIDCount',
-                        default: 'number of learned IDs'
+                        default: 'number of IDs learned'
                     })
                 },
                 {
@@ -149,7 +149,7 @@ class ExtensionBlocks extends HuskylensProtocol {
                     blockType: BlockType.BOOLEAN,
                     text: formatMessage({
                         id: 'huskylens.isObjectOnScreen',
-                        default: '[objectType] is on screen?'
+                        default: 'is there a(n) [objectType] on screen?'
                     }),
                     arguments: {
                         objectType: {
@@ -164,7 +164,7 @@ class ExtensionBlocks extends HuskylensProtocol {
                     blockType: BlockType.REPORTER,
                     text: formatMessage({
                         id: 'huskylens.getBoxNearCenter',
-                        default: '[parameter] of box closest to screen center'
+                        default: '[parameter] of box closest to center'
                     }),
                     arguments: {
                         parameter: {
@@ -179,7 +179,7 @@ class ExtensionBlocks extends HuskylensProtocol {
                     blockType: BlockType.REPORTER,
                     text: formatMessage({
                         id: 'huskylens.getArrowNearCenter',
-                        default: '[parameter] of arrow closest to screen center'
+                        default: '[parameter] of arrow closest to center'
                     }),
                     arguments: {
                         parameter: {
@@ -208,7 +208,7 @@ class ExtensionBlocks extends HuskylensProtocol {
                     blockType: BlockType.BOOLEAN,
                     text: formatMessage({
                         id: 'huskylens.isIDObjectOnScreen',
-                        default: 'is ID [id] [objectType] on the screen?'
+                        default: 'is ID [id] [objectType] on screen?'
                     }),
                     arguments: {
                         id: {type: ArgumentType.NUMBER, defaultValue: 1},
@@ -224,7 +224,7 @@ class ExtensionBlocks extends HuskylensProtocol {
                     blockType: BlockType.REPORTER,
                     text: formatMessage({
                         id: 'huskylens.getBoxParamByID',
-                        default: '[parameter] of ID [id] box'
+                        default: '[parameter] of box with ID [id]'
                     }),
                     arguments: {
                         parameter: {type: ArgumentType.STRING, menu: 'parameterMenu1', defaultValue: Content1.width},
@@ -236,7 +236,7 @@ class ExtensionBlocks extends HuskylensProtocol {
                     blockType: BlockType.REPORTER,
                     text: formatMessage({
                         id: 'huskylens.getArrowParamByID',
-                        default: '[parameter] of ID [id] arrow'
+                        default: '[parameter] of arrow with ID [id]'
                     }),
                     arguments: {
                         parameter: {type: ArgumentType.STRING, menu: 'parameterMenu2', defaultValue: Content2.xOrigin},
@@ -249,12 +249,12 @@ class ExtensionBlocks extends HuskylensProtocol {
                     blockType: BlockType.REPORTER,
                     text: formatMessage({
                         id: 'huskylens.getTotalCount',
-                        default: 'number of [objectType]s'
+                        default: 'number of [objectType]'
                     }),
                     arguments: {
                         objectType: {
                             type: ArgumentType.STRING,
-                            menu: 'resultTypeMenu',
+                            menu: 'resultTypeMenu2',
                             defaultValue: HUSKYLENSResultType_t.HUSKYLENSResultBlock
                         }
                     }
@@ -264,7 +264,7 @@ class ExtensionBlocks extends HuskylensProtocol {
                     blockType: BlockType.REPORTER,
                     text: formatMessage({
                         id: 'huskylens.getNthBoxParam',
-                        default: '[parameter] of No. [index] box'
+                        default: '[parameter] of box number [index]'
                     }),
                     arguments: {
                         parameter: {type: ArgumentType.STRING, menu: 'parameterMenu3', defaultValue: Content3.ID},
@@ -276,7 +276,7 @@ class ExtensionBlocks extends HuskylensProtocol {
                     blockType: BlockType.REPORTER,
                     text: formatMessage({
                         id: 'huskylens.getNthArrowParam',
-                        default: '[parameter] of No. [index] arrow'
+                        default: '[parameter] of arrow number [index]'
                     }),
                     arguments: {
                         parameter: {type: ArgumentType.STRING, menu: 'parameterMenu4', defaultValue: Content4.ID},
@@ -288,13 +288,13 @@ class ExtensionBlocks extends HuskylensProtocol {
                     blockType: BlockType.REPORTER,
                     text: formatMessage({
                         id: 'huskylens.getTotalByID',
-                        default: 'number of ID [id] [objectType]'
+                        default: 'number of [objectType] with ID [id]'
                     }),
                     arguments: {
                         id: {type: ArgumentType.NUMBER, defaultValue: 1},
                         objectType: {
                             type: ArgumentType.STRING,
-                            menu: 'resultTypeMenu',
+                            menu: 'resultTypeMenu2',
                             defaultValue: HUSKYLENSResultType_t.HUSKYLENSResultBlock
                         }
                     }
@@ -304,7 +304,7 @@ class ExtensionBlocks extends HuskylensProtocol {
                     blockType: BlockType.REPORTER,
                     text: formatMessage({
                         id: 'huskylens.getNthBoxParamByID',
-                        default: '[parameter] of ID [id] No. [index] box'
+                        default: '[parameter] of box [index] with ID [id]'
                     }),
                     arguments: {
                         parameter: {
@@ -321,7 +321,7 @@ class ExtensionBlocks extends HuskylensProtocol {
                     blockType: BlockType.REPORTER,
                     text: formatMessage({
                         id: 'huskylens.getNthArrowParamByID',
-                        default: '[parameter] of ID [id] No. [index] arrow'
+                        default: '[parameter] of arrow [index] with ID [id]'
                     }),
                     arguments: {
                         parameter: {type: ArgumentType.STRING, menu: 'parameterMenu2', defaultValue: Content2.xOrigin},
@@ -332,7 +332,7 @@ class ExtensionBlocks extends HuskylensProtocol {
                 {
                     opcode: 'learnIDAuto',
                     blockType: BlockType.COMMAND,
-                    text: formatMessage({id: 'huskylens.learnIDAuto', default: 'learn ID [id] automatically'}),
+                    text: formatMessage({id: 'huskylens.learnIDAuto', default: 'automatically learn ID [id]'}),
                     arguments: {
                         id: {type: ArgumentType.NUMBER, defaultValue: 1}
                     }
@@ -342,13 +342,13 @@ class ExtensionBlocks extends HuskylensProtocol {
                     blockType: BlockType.COMMAND,
                     text: formatMessage({
                         id: 'huskylens.forgetAll',
-                        default: 'forget all learning data of the current algorithm'
+                        default: 'forget all learning data'
                     })
                 },
                 {
                     opcode: 'setIDName',
                     blockType: BlockType.COMMAND,
-                    text: formatMessage({id: 'huskylens.setIDName', default: 'set name of ID [id] as [name]'}),
+                    text: formatMessage({id: 'huskylens.setIDName', default: 'set name of ID [id] to [name]'}),
                     arguments: {
                         id: {type: ArgumentType.NUMBER, defaultValue: 1},
                         name: {type: ArgumentType.STRING, defaultValue: 'DFRobot'}
@@ -359,7 +359,7 @@ class ExtensionBlocks extends HuskylensProtocol {
                     blockType: BlockType.COMMAND,
                     text: formatMessage({
                         id: 'huskylens.showTextOnScreen',
-                        default: 'show text [text] at x [x] y [y] on screen'
+                        default: 'show text [text] at x [x], y [y]'
                     }),
                     arguments: {
                         text: {type: ArgumentType.STRING, defaultValue: 'DFRobot'},
@@ -370,12 +370,12 @@ class ExtensionBlocks extends HuskylensProtocol {
                 {
                     opcode: 'clearText',
                     blockType: BlockType.COMMAND,
-                    text: formatMessage({id: 'huskylens.clearText', default: 'clear all custom texts on screen'})
+                    text: formatMessage({id: 'huskylens.clearText', default: 'clear all text from screen'})
                 },
                 {
                     opcode: 'takePhoto',
                     blockType: BlockType.COMMAND,
-                    text: formatMessage({id: 'huskylens.takePhoto', default: 'take a [type] and save to SD card'}),
+                    text: formatMessage({id: 'huskylens.takePhoto', default: 'take a [type] and save it'}),
                     arguments: {
                         type: {type: ArgumentType.STRING, defaultValue: HUSKYLENSphoto.PHOTO, menu: 'photoTypeMenu'}
                     }
@@ -385,10 +385,20 @@ class ExtensionBlocks extends HuskylensProtocol {
                     blockType: BlockType.COMMAND,
                     text: formatMessage({
                         id: 'huskylens.saveModelToSD',
-                        default: '[command] current algorithm data as model No. [data] on SD card'
+                        default: 'save current model as number [data]'
                     }),
                     arguments: {
-                        command: {type: ArgumentType.STRING, defaultValue: HUSKYLENSMode.SAVE, menu: 'commandMenu'},
+                        data: {type: ArgumentType.NUMBER, defaultValue: 0, min: 0, max: 5, precision: 1}
+                    }
+                },
+                {
+                    opcode: 'loadModelFromSD',
+                    blockType: BlockType.COMMAND,
+                    text: formatMessage({
+                        id: 'huskylens.saveModelToSD',
+                        default: 'load number [data] model'
+                    }),
+                    arguments: {
                         data: {type: ArgumentType.NUMBER, defaultValue: 0, min: 0, max: 5, precision: 1}
                     }
                 }
@@ -468,7 +478,7 @@ class ExtensionBlocks extends HuskylensProtocol {
                         {
                             text: formatMessage({
                                 id: 'huskylens.menu.resultTypeMenu.frame',
-                                default: 'frame'
+                                default: 'box'
                             }),
                             value: HUSKYLENSResultType_t.HUSKYLENSResultBlock.toString()
                         },
@@ -476,6 +486,25 @@ class ExtensionBlocks extends HuskylensProtocol {
                             text: formatMessage({
                                 id: 'huskylens.menu.resultTypeMenu.arrow',
                                 default: 'arrow'
+                            }),
+                            value: HUSKYLENSResultType_t.HUSKYLENSResultArrow.toString()
+                        }
+                    ]
+                },
+                resultTypeMenu2: {
+                    acceptReporters: false,
+                    items: [
+                        {
+                            text: formatMessage({
+                                id: 'huskylens.menu.resultTypeMenu2.frame',
+                                default: 'boxes'
+                            }),
+                            value: HUSKYLENSResultType_t.HUSKYLENSResultBlock.toString()
+                        },
+                        {
+                            text: formatMessage({
+                                id: 'huskylens.menu.resultTypeMenu2.arrow',
+                                default: 'arrows'
                             }),
                             value: HUSKYLENSResultType_t.HUSKYLENSResultArrow.toString()
                         }
@@ -645,25 +674,6 @@ class ExtensionBlocks extends HuskylensProtocol {
                             value: HUSKYLENSphoto.SCREENSHOT.toString()
                         }
                     ]
-                },
-                commandMenu: {
-                    acceptReporters: false,
-                    items: [
-                        {
-                            text: formatMessage({
-                                id: 'huskylens.menu.commandMenu.save',
-                                default: 'save'
-                            }),
-                            value: HUSKYLENSMode.SAVE.toString()
-                        },
-                        {
-                            text: formatMessage({
-                                id: 'huskylens.menu.commandMenu.load',
-                                default: 'load'
-                            }),
-                            value: HUSKYLENSMode.LOAD.toString()
-                        }
-                    ]
                 }
             }
         };
@@ -758,7 +768,11 @@ class ExtensionBlocks extends HuskylensProtocol {
     }
 
     saveModelToSD (args) {
-        this.saveModelToTFCard(Number(args.command), Number(args.data));
+        this.saveModelToTFCard(HUSKYLENSMode.SAVE, Number(args.data));
+    }
+
+    loadModelFromSD (args) {
+        this.saveModelToTFCard(HUSKYLENSMode.LOAD, Number(args.data));
     }
 }
 

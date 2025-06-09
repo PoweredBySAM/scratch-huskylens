@@ -1941,29 +1941,29 @@ class HuskylensProtocol {
 var en = {
 	"huskylens.name": "HuskyLens",
 	"huskylens.initI2c": "initialize HuskyLens",
-	"huskylens.selectAlgorithm": "switch algorithm to [algorithm]",
-	"huskylens.requestDataOnce": "request data from device",
-	"huskylens.getLearnedIDCount": "number of learned IDs",
-	"huskylens.isObjectOnScreen": "[objectType] is on screen?",
-	"huskylens.getBoxNearCenter": "[parameter] of box closest to screen center",
-	"huskylens.getArrowNearCenter": "[parameter] of arrow closest to screen center",
+	"huskylens.selectAlgorithm": "set algorithm to [algorithm]",
+	"huskylens.requestDataOnce": "get data from HuskyLens",
+	"huskylens.getLearnedIDCount": "number of IDs learned",
+	"huskylens.isObjectOnScreen": "is there a(n) [objectType] on screen?",
+	"huskylens.getBoxNearCenter": "[parameter] of box closest to center",
+	"huskylens.getArrowNearCenter": "[parameter] of arrow closest to center",
 	"huskylens.isIDLearned": "is ID [id] learned?",
-	"huskylens.isIDObjectOnScreen": "is ID [id] [objectType] on the screen?",
-	"huskylens.getBoxParamByID": "[parameter] of ID [id] box",
-	"huskylens.getArrowParamByID": "[parameter] of ID [id] arrow",
-	"huskylens.getTotalCount": "number of [objectType]s",
-	"huskylens.getNthBoxParam": "[parameter] of No. [index] box",
-	"huskylens.getNthArrowParam": "[parameter] of No. [index] arrow",
-	"huskylens.getTotalByID": "number of ID [id] [objectType]",
-	"huskylens.getNthBoxParamByID": "[parameter] of ID [id] No. [index] box",
-	"huskylens.getNthArrowParamByID": "[parameter] of ID [id] No. [index] arrow",
-	"huskylens.learnIDAuto": "learn ID [id] automatically",
-	"huskylens.forgetAll": "forget all learning data of the current algorithm",
-	"huskylens.setIDName": "set name of ID [id] as [name]",
-	"huskylens.showTextOnScreen": "show text [text] at x [x] y [y] on screen",
-	"huskylens.clearText": "clear all custom texts on screen",
-	"huskylens.takePhoto": "take a [type] and save to SD card",
-	"huskylens.saveModelToSD": "[command] current algorithm data as model No. [data] on SD card",
+	"huskylens.isIDObjectOnScreen": "is ID [id] [objectType] on screen?",
+	"huskylens.getBoxParamByID": "[parameter] of box with ID [id]",
+	"huskylens.getArrowParamByID": "[parameter] of arrow with ID [id]",
+	"huskylens.getTotalCount": "number of [objectType]",
+	"huskylens.getNthBoxParam": "[parameter] of box number [index]",
+	"huskylens.getNthArrowParam": "[parameter] of arrow number [index]",
+	"huskylens.getTotalByID": "number of [objectType] with ID [id]",
+	"huskylens.getNthBoxParamByID": "[parameter] of box [index] with ID [id]",
+	"huskylens.getNthArrowParamByID": "[parameter] of arrow [index] with ID [id]",
+	"huskylens.learnIDAuto": "automatically learn ID [id]",
+	"huskylens.forgetAll": "forget all learning data",
+	"huskylens.setIDName": "set name of ID [id] to [name]",
+	"huskylens.showTextOnScreen": "show text [text] at x [x], y [y]",
+	"huskylens.clearText": "clear all text from screen",
+	"huskylens.takePhoto": "take a [type] and save it",
+	"huskylens.saveModelToSD": "save current model as number [data]",
 	"huskylens.menu.algorithm.face_rec": "face recognition",
 	"huskylens.menu.algorithm.obj_trac": "object tracking",
 	"huskylens.menu.algorithm.obj_rec": "object recognition",
@@ -1973,8 +1973,10 @@ var en = {
 	"huskylens.menu.algorithm.obj_class": "object classification",
 	"huskylens.menu.algorithm.qr_rec": "QR code recogmition (EDU only)",
 	"huskylens.menu.algorithm.bar_rec": "barcode recognition (EDU only)",
-	"huskylens.menu.resultTypeMenu.frame": "frame",
+	"huskylens.menu.resultTypeMenu.frame": "box",
 	"huskylens.menu.resultTypeMenu.arrow": "arrow",
+	"huskylens.menu.resultTypeMenu2.frame": "boxes",
+	"huskylens.menu.resultTypeMenu2.arrow": "arrows",
 	"huskylens.menu.parameterMenu1.xCenter": "X center",
 	"huskylens.menu.parameterMenu1.yCenter": "Y center",
 	"huskylens.menu.parameterMenu1.width": "width",
@@ -1985,9 +1987,7 @@ var en = {
 	"huskylens.menu.parameterMenu2.yTarget": "Y endpoint",
 	"huskylens.menu.parameterMenu3.id": "ID",
 	"huskylens.menu.photoTypeMenu.photo": "photo",
-	"huskylens.menu.photoTypeMenu.screen": "screenshot",
-	"huskylens.menu.commandMenu.save": "save",
-	"huskylens.menu.commandMenu.load": "load"
+	"huskylens.menu.photoTypeMenu.screen": "screenshot"
 };
 
 function _callSuper(t, o, e) { return o = _getPrototypeOf(o), _possibleConstructorReturn(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor) : o.apply(t, e)); }
@@ -2075,7 +2075,7 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
           blockType: BlockType.COMMAND,
           text: formatMessage({
             id: 'huskylens.selectAlgorithm',
-            default: 'switch algorithm to [algorithm]'
+            default: 'set algorithm to [algorithm]'
           }),
           arguments: {
             algorithm: {
@@ -2089,21 +2089,21 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
           blockType: BlockType.COMMAND,
           text: formatMessage({
             id: 'huskylens.requestDataOnce',
-            default: 'request data from device'
+            default: 'get data from HuskyLens'
           })
         }, {
           opcode: 'getLearnedIDCount',
           blockType: BlockType.REPORTER,
           text: formatMessage({
             id: 'huskylens.getLearnedIDCount',
-            default: 'number of learned IDs'
+            default: 'number of IDs learned'
           })
         }, {
           opcode: 'isObjectOnScreen',
           blockType: BlockType.BOOLEAN,
           text: formatMessage({
             id: 'huskylens.isObjectOnScreen',
-            default: '[objectType] is on screen?'
+            default: 'is there a(n) [objectType] on screen?'
           }),
           arguments: {
             objectType: {
@@ -2117,7 +2117,7 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
           blockType: BlockType.REPORTER,
           text: formatMessage({
             id: 'huskylens.getBoxNearCenter',
-            default: '[parameter] of box closest to screen center'
+            default: '[parameter] of box closest to center'
           }),
           arguments: {
             parameter: {
@@ -2131,7 +2131,7 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
           blockType: BlockType.REPORTER,
           text: formatMessage({
             id: 'huskylens.getArrowNearCenter',
-            default: '[parameter] of arrow closest to screen center'
+            default: '[parameter] of arrow closest to center'
           }),
           arguments: {
             parameter: {
@@ -2158,7 +2158,7 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
           blockType: BlockType.BOOLEAN,
           text: formatMessage({
             id: 'huskylens.isIDObjectOnScreen',
-            default: 'is ID [id] [objectType] on the screen?'
+            default: 'is ID [id] [objectType] on screen?'
           }),
           arguments: {
             id: {
@@ -2176,7 +2176,7 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
           blockType: BlockType.REPORTER,
           text: formatMessage({
             id: 'huskylens.getBoxParamByID',
-            default: '[parameter] of ID [id] box'
+            default: '[parameter] of box with ID [id]'
           }),
           arguments: {
             parameter: {
@@ -2194,7 +2194,7 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
           blockType: BlockType.REPORTER,
           text: formatMessage({
             id: 'huskylens.getArrowParamByID',
-            default: '[parameter] of ID [id] arrow'
+            default: '[parameter] of arrow with ID [id]'
           }),
           arguments: {
             parameter: {
@@ -2212,12 +2212,12 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
           blockType: BlockType.REPORTER,
           text: formatMessage({
             id: 'huskylens.getTotalCount',
-            default: 'number of [objectType]s'
+            default: 'number of [objectType]'
           }),
           arguments: {
             objectType: {
               type: ArgumentType.STRING,
-              menu: 'resultTypeMenu',
+              menu: 'resultTypeMenu2',
               defaultValue: HUSKYLENSResultType_t.HUSKYLENSResultBlock
             }
           }
@@ -2226,7 +2226,7 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
           blockType: BlockType.REPORTER,
           text: formatMessage({
             id: 'huskylens.getNthBoxParam',
-            default: '[parameter] of No. [index] box'
+            default: '[parameter] of box number [index]'
           }),
           arguments: {
             parameter: {
@@ -2244,7 +2244,7 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
           blockType: BlockType.REPORTER,
           text: formatMessage({
             id: 'huskylens.getNthArrowParam',
-            default: '[parameter] of No. [index] arrow'
+            default: '[parameter] of arrow number [index]'
           }),
           arguments: {
             parameter: {
@@ -2262,7 +2262,7 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
           blockType: BlockType.REPORTER,
           text: formatMessage({
             id: 'huskylens.getTotalByID',
-            default: 'number of ID [id] [objectType]'
+            default: 'number of [objectType] with ID [id]'
           }),
           arguments: {
             id: {
@@ -2271,7 +2271,7 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
             },
             objectType: {
               type: ArgumentType.STRING,
-              menu: 'resultTypeMenu',
+              menu: 'resultTypeMenu2',
               defaultValue: HUSKYLENSResultType_t.HUSKYLENSResultBlock
             }
           }
@@ -2280,7 +2280,7 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
           blockType: BlockType.REPORTER,
           text: formatMessage({
             id: 'huskylens.getNthBoxParamByID',
-            default: '[parameter] of ID [id] No. [index] box'
+            default: '[parameter] of box [index] with ID [id]'
           }),
           arguments: {
             parameter: {
@@ -2302,7 +2302,7 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
           blockType: BlockType.REPORTER,
           text: formatMessage({
             id: 'huskylens.getNthArrowParamByID',
-            default: '[parameter] of ID [id] No. [index] arrow'
+            default: '[parameter] of arrow [index] with ID [id]'
           }),
           arguments: {
             parameter: {
@@ -2324,7 +2324,7 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
           blockType: BlockType.COMMAND,
           text: formatMessage({
             id: 'huskylens.learnIDAuto',
-            default: 'learn ID [id] automatically'
+            default: 'automatically learn ID [id]'
           }),
           arguments: {
             id: {
@@ -2337,14 +2337,14 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
           blockType: BlockType.COMMAND,
           text: formatMessage({
             id: 'huskylens.forgetAll',
-            default: 'forget all learning data of the current algorithm'
+            default: 'forget all learning data'
           })
         }, {
           opcode: 'setIDName',
           blockType: BlockType.COMMAND,
           text: formatMessage({
             id: 'huskylens.setIDName',
-            default: 'set name of ID [id] as [name]'
+            default: 'set name of ID [id] to [name]'
           }),
           arguments: {
             id: {
@@ -2361,7 +2361,7 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
           blockType: BlockType.COMMAND,
           text: formatMessage({
             id: 'huskylens.showTextOnScreen',
-            default: 'show text [text] at x [x] y [y] on screen'
+            default: 'show text [text] at x [x], y [y]'
           }),
           arguments: {
             text: {
@@ -2388,14 +2388,14 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
           blockType: BlockType.COMMAND,
           text: formatMessage({
             id: 'huskylens.clearText',
-            default: 'clear all custom texts on screen'
+            default: 'clear all text from screen'
           })
         }, {
           opcode: 'takePhoto',
           blockType: BlockType.COMMAND,
           text: formatMessage({
             id: 'huskylens.takePhoto',
-            default: 'take a [type] and save to SD card'
+            default: 'take a [type] and save it'
           }),
           arguments: {
             type: {
@@ -2409,14 +2409,25 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
           blockType: BlockType.COMMAND,
           text: formatMessage({
             id: 'huskylens.saveModelToSD',
-            default: '[command] current algorithm data as model No. [data] on SD card'
+            default: 'save current model as number [data]'
           }),
           arguments: {
-            command: {
-              type: ArgumentType.STRING,
-              defaultValue: HUSKYLENSMode.SAVE,
-              menu: 'commandMenu'
-            },
+            data: {
+              type: ArgumentType.NUMBER,
+              defaultValue: 0,
+              min: 0,
+              max: 5,
+              precision: 1
+            }
+          }
+        }, {
+          opcode: 'loadModelFromSD',
+          blockType: BlockType.COMMAND,
+          text: formatMessage({
+            id: 'huskylens.saveModelToSD',
+            default: 'load number [data] model'
+          }),
+          arguments: {
             data: {
               type: ArgumentType.NUMBER,
               defaultValue: 0,
@@ -2490,13 +2501,29 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
             items: [{
               text: formatMessage({
                 id: 'huskylens.menu.resultTypeMenu.frame',
-                default: 'frame'
+                default: 'box'
               }),
               value: HUSKYLENSResultType_t.HUSKYLENSResultBlock.toString()
             }, {
               text: formatMessage({
                 id: 'huskylens.menu.resultTypeMenu.arrow',
                 default: 'arrow'
+              }),
+              value: HUSKYLENSResultType_t.HUSKYLENSResultArrow.toString()
+            }]
+          },
+          resultTypeMenu2: {
+            acceptReporters: false,
+            items: [{
+              text: formatMessage({
+                id: 'huskylens.menu.resultTypeMenu2.frame',
+                default: 'boxes'
+              }),
+              value: HUSKYLENSResultType_t.HUSKYLENSResultBlock.toString()
+            }, {
+              text: formatMessage({
+                id: 'huskylens.menu.resultTypeMenu2.arrow',
+                default: 'arrows'
               }),
               value: HUSKYLENSResultType_t.HUSKYLENSResultArrow.toString()
             }]
@@ -2639,22 +2666,6 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
                 default: 'screenshot'
               }),
               value: HUSKYLENSphoto.SCREENSHOT.toString()
-            }]
-          },
-          commandMenu: {
-            acceptReporters: false,
-            items: [{
-              text: formatMessage({
-                id: 'huskylens.menu.commandMenu.save',
-                default: 'save'
-              }),
-              value: HUSKYLENSMode.SAVE.toString()
-            }, {
-              text: formatMessage({
-                id: 'huskylens.menu.commandMenu.load',
-                default: 'load'
-              }),
-              value: HUSKYLENSMode.LOAD.toString()
             }]
           }
         }
@@ -2818,7 +2829,12 @@ var ExtensionBlocks = /*#__PURE__*/function (_HuskylensProtocol) {
   }, {
     key: "saveModelToSD",
     value: function saveModelToSD(args) {
-      this.saveModelToTFCard(Number(args.command), Number(args.data));
+      this.saveModelToTFCard(HUSKYLENSMode.SAVE, Number(args.data));
+    }
+  }, {
+    key: "loadModelFromSD",
+    value: function loadModelFromSD(args) {
+      this.saveModelToTFCard(HUSKYLENSMode.LOAD, Number(args.data));
     }
   }], [{
     key: "formatMessage",
