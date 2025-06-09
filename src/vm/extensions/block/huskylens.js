@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import BlockType from '../../extension-support/block-type';
 import ArgumentType from '../../extension-support/argument-type';
-import {HuskylensProtocol, HUSKYLENSResultType_t,
+import {HuskylensProtocol, HUSKYLENSResultType_t, HUSKYLENSMode, HUSKYLENSphoto,
     Content1, Content2, Content3, Content4,
     protocolAlgorithm}
     from './protocol.ts';
@@ -315,82 +315,82 @@ class ExtensionBlocks extends HuskylensProtocol {
                         id: {type: ArgumentType.NUMBER, defaultValue: 1},
                         index: {type: ArgumentType.NUMBER, defaultValue: 1}
                     }
-                // },
-                // {
-                //     opcode: 'getNthArrowParamByID',
-                //     blockType: BlockType.REPORTER,
-                //     text: formatMessage({
-                //         id: 'huskylens.getNthArrowParamByID',
-                //         default: '[parameter] of ID [id] No. [index] arrow'
-                //     }),
-                //     arguments: {
-                //         parameter: {type: ArgumentType.STRING, menu: 'parameterMenu', defaultValue: 'x'},
-                //         id: {type: ArgumentType.NUMBER, defaultValue: 1},
-                //         index: {type: ArgumentType.NUMBER, defaultValue: 1}
-                //     }
-                // },
-                // {
-                //     opcode: 'learnIDAuto',
-                //     blockType: BlockType.COMMAND,
-                //     text: formatMessage({id: 'huskylens.learnIDAuto', default: 'learn ID [id] automatically'}),
-                //     arguments: {
-                //         id: {type: ArgumentType.NUMBER, defaultValue: 1}
-                //     }
-                // },
-                // {
-                //     opcode: 'forgetAll',
-                //     blockType: BlockType.COMMAND,
-                //     text: formatMessage({
-                //         id: 'huskylens.forgetAll',
-                //         default: 'forget all learning data of the current algorithm'
-                //     })
-                // },
-                // {
-                //     opcode: 'setIDName',
-                //     blockType: BlockType.COMMAND,
-                //     text: formatMessage({id: 'huskylens.setIDName', default: 'set name of ID [id] as [name]'}),
-                //     arguments: {
-                //         id: {type: ArgumentType.NUMBER, defaultValue: 1},
-                //         name: {type: ArgumentType.STRING, defaultValue: 'DFRobot'}
-                //     }
-                // },
-                // {
-                //     opcode: 'showTextOnScreen',
-                //     blockType: BlockType.COMMAND,
-                //     text: formatMessage({
-                //         id: 'huskylens.showTextOnScreen',
-                //         default: 'show text [text] at x [x] y [y] on screen'
-                //     }),
-                //     arguments: {
-                //         text: {type: ArgumentType.STRING, defaultValue: 'DFRobot'},
-                //         x: {type: ArgumentType.NUMBER, defaultValue: 150},
-                //         y: {type: ArgumentType.NUMBER, defaultValue: 30}
-                //     }
-                // },
-                // {
-                //     opcode: 'clearText',
-                //     blockType: BlockType.COMMAND,
-                //     text: formatMessage({id: 'huskylens.clearText', default: 'clear all custom texts on screen'})
-                // },
-                // {
-                //     opcode: 'takePhoto',
-                //     blockType: BlockType.COMMAND,
-                //     text: formatMessage({id: 'huskylens.takePhoto', default: 'take a [type] and save to SD card'}),
-                //     arguments: {
-                //         type: {type: ArgumentType.STRING, defaultValue: 'photo'}
-                //     }
-                // },
-                // {
-                //     opcode: 'saveModelToSD',
-                //     blockType: BlockType.COMMAND,
-                //     text: formatMessage({
-                //         id: 'huskylens.saveModelToSD',
-                //         default: '[command] current algorithm data as model No. [data] on SD card'
-                //     }),
-                //     arguments: {
-                //         command: {type: ArgumentType.STRING, defaultValue: 'save'},
-                //         data: {type: ArgumentType.NUMBER, defaultValue: 0}
-                //     }
+                },
+                {
+                    opcode: 'getNthArrowParamByID',
+                    blockType: BlockType.REPORTER,
+                    text: formatMessage({
+                        id: 'huskylens.getNthArrowParamByID',
+                        default: '[parameter] of ID [id] No. [index] arrow'
+                    }),
+                    arguments: {
+                        parameter: {type: ArgumentType.STRING, menu: 'parameterMenu2', defaultValue: Content2.xOrigin},
+                        id: {type: ArgumentType.NUMBER, defaultValue: 1},
+                        index: {type: ArgumentType.NUMBER, defaultValue: 1}
+                    }
+                },
+                {
+                    opcode: 'learnIDAuto',
+                    blockType: BlockType.COMMAND,
+                    text: formatMessage({id: 'huskylens.learnIDAuto', default: 'learn ID [id] automatically'}),
+                    arguments: {
+                        id: {type: ArgumentType.NUMBER, defaultValue: 1}
+                    }
+                },
+                {
+                    opcode: 'forgetAll',
+                    blockType: BlockType.COMMAND,
+                    text: formatMessage({
+                        id: 'huskylens.forgetAll',
+                        default: 'forget all learning data of the current algorithm'
+                    })
+                },
+                {
+                    opcode: 'setIDName',
+                    blockType: BlockType.COMMAND,
+                    text: formatMessage({id: 'huskylens.setIDName', default: 'set name of ID [id] as [name]'}),
+                    arguments: {
+                        id: {type: ArgumentType.NUMBER, defaultValue: 1},
+                        name: {type: ArgumentType.STRING, defaultValue: 'DFRobot'}
+                    }
+                },
+                {
+                    opcode: 'showTextOnScreen',
+                    blockType: BlockType.COMMAND,
+                    text: formatMessage({
+                        id: 'huskylens.showTextOnScreen',
+                        default: 'show text [text] at x [x] y [y] on screen'
+                    }),
+                    arguments: {
+                        text: {type: ArgumentType.STRING, defaultValue: 'DFRobot'},
+                        x: {type: ArgumentType.NUMBER, defaultValue: 150, min: 0, max: 319, precision: 1},
+                        y: {type: ArgumentType.NUMBER, defaultValue: 30, min: 0, max: 210, precision: 1}
+                    }
+                },
+                {
+                    opcode: 'clearText',
+                    blockType: BlockType.COMMAND,
+                    text: formatMessage({id: 'huskylens.clearText', default: 'clear all custom texts on screen'})
+                },
+                {
+                    opcode: 'takePhoto',
+                    blockType: BlockType.COMMAND,
+                    text: formatMessage({id: 'huskylens.takePhoto', default: 'take a [type] and save to SD card'}),
+                    arguments: {
+                        type: {type: ArgumentType.STRING, defaultValue: HUSKYLENSphoto.PHOTO, menu: 'photoTypeMenu'}
+                    }
+                },
+                {
+                    opcode: 'saveModelToSD',
+                    blockType: BlockType.COMMAND,
+                    text: formatMessage({
+                        id: 'huskylens.saveModelToSD',
+                        default: '[command] current algorithm data as model No. [data] on SD card'
+                    }),
+                    arguments: {
+                        command: {type: ArgumentType.STRING, defaultValue: HUSKYLENSMode.SAVE, menu: 'commandMenu'},
+                        data: {type: ArgumentType.NUMBER, defaultValue: 0, min: 0, max: 5, precision: 1}
+                    }
                 }
             ],
             menus: {
@@ -626,6 +626,44 @@ class ExtensionBlocks extends HuskylensProtocol {
                             value: Content4.yTarget.toString()
                         }
                     ]
+                },
+                photoTypeMenu: {
+                    acceptReporters: false,
+                    items: [
+                        {
+                            text: formatMessage({
+                                id: 'huskylens.menu.photoTypeMenu.photo',
+                                default: 'photo'
+                            }),
+                            value: HUSKYLENSphoto.PHOTO.toString()
+                        },
+                        {
+                            text: formatMessage({
+                                id: 'huskylens.menu.photoTypeMenu.screen',
+                                default: 'screenshot'
+                            }),
+                            value: HUSKYLENSphoto.SCREENSHOT.toString()
+                        }
+                    ]
+                },
+                commandMenu: {
+                    acceptReporters: false,
+                    items: [
+                        {
+                            text: formatMessage({
+                                id: 'huskylens.menu.commandMenu.save',
+                                default: 'save'
+                            }),
+                            value: HUSKYLENSMode.SAVE.toString()
+                        },
+                        {
+                            text: formatMessage({
+                                id: 'huskylens.menu.commandMenu.load',
+                                default: 'load'
+                            }),
+                            value: HUSKYLENSMode.LOAD.toString()
+                        }
+                    ]
                 }
             }
         };
@@ -689,6 +727,38 @@ class ExtensionBlocks extends HuskylensProtocol {
 
     getNthBoxParamByID (args) {
         return this.readeBox_index(Number(args.id), Number(args.index), Number(args.parameter));
+    }
+
+    getNthArrowParamByID (args) {
+        return this.readeArrow_index(Number(args.id), Number(args.index), Number(args.parameter));
+    }
+
+    learnIDAuto (args) {
+        this.writeLearn1(Number(args.id));
+    }
+
+    forgetAll () {
+        this.forgetLearn();
+    }
+
+    setIDName (args) {
+        this.writeName(Number(args.id), args.name);
+    }
+
+    showTextOnScreen (args) {
+        this.writeOSD(args.text, Number(args.x), Number(args.y));
+    }
+
+    clearText () {
+        this.clearOSD();
+    }
+
+    async takePhoto (args) {
+        await this.takePhotoToSDCard(Number(args.type));
+    }
+
+    saveModelToSD (args) {
+        this.saveModelToTFCard(Number(args.command), Number(args.data));
     }
 }
 

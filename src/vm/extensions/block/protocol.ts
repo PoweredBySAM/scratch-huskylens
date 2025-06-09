@@ -87,11 +87,11 @@ let FIRST = {
     requestID: -1,
 };
 
-enum HUSKYLENSMode {
+export enum HUSKYLENSMode {
     SAVE,
     LOAD,
 }
-enum HUSKYLENSphoto {
+export enum HUSKYLENSphoto {
     PHOTO,
     SCREENSHOT
 }
@@ -508,9 +508,6 @@ export class HuskylensProtocol {
      * @param id to id ,eg: 1
      * @param index to index ,eg: 1
      */
-    //%block="HuskyLens get $number1 of the ID $id No. $index arrow from the result"
-    //% weight=35
-    //% advanced=true
     readeArrow_index(id: number, index: number, number1: Content2): number {
         if (!this.mbitMore.isConnected()) {
             return 0;
@@ -541,9 +538,6 @@ export class HuskylensProtocol {
      * Huskylens automatic learning ID
      * @param id to id ,eg: 1
      */
-    //%block="HuskyLens learn ID %id once automatically"
-    //% weight=30
-    //% advanced=true
     writeLearn1(id: number): void {
         if (!this.mbitMore.isConnected()) {
             return;
@@ -554,9 +548,6 @@ export class HuskylensProtocol {
     /**
      * Huskylens forget all learning data of the current algorithm
      */
-    //%block="HuskyLens forget all learning data of the current algorithm"
-    //% weight=29
-    //% advanced=true
     forgetLearn(): void {
         if (!this.mbitMore.isConnected()) {
             return;
@@ -569,9 +560,6 @@ export class HuskylensProtocol {
      * @param id to id ,eg: 1
      * @param name to name ,eg: "DFRobot"
      */
-    //%block="HuskyLens name ID %id of the current algorithm as %name"
-    //% weight=28
-    //% advanced=true
     writeName(id: number, name: string): void {
         if (!this.mbitMore.isConnected()) {
             return;
@@ -599,11 +587,6 @@ export class HuskylensProtocol {
      * @param x to x ,eg: 150
      * @param y to y ,eg: 30
      */
-    //%block="HuskyLens show custom texts %name at position x %x y %y on screen"
-    //% weight=27
-    //% advanced=true
-    //% x.min=0 x.max=319
-    //% y.min=0 y.max=210
     writeOSD(name: string, x: number, y: number): void {
         if (!this.mbitMore.isConnected()) {
             return;
@@ -633,9 +616,6 @@ export class HuskylensProtocol {
     /**
      * HuskyLens clear characters in the screen
      */
-    //%block="HuskyLens clear all custom texts on screen"
-    //% weight=26
-    //% advanced=true
     clearOSD(): void {
         if (!this.mbitMore.isConnected()) {
             return;
@@ -646,9 +626,6 @@ export class HuskylensProtocol {
     /**
      * Photos and screenshots
      */
-    //%block="HuskyLens take %request and save to SD card"
-    //% weight=25
-    //% advanced=true
     async takePhotoToSDCard(request: HUSKYLENSphoto): Promise<void> {
         if (!this.mbitMore.isConnected()) {
             return;
@@ -673,10 +650,6 @@ export class HuskylensProtocol {
     /**
      * Save data model
      */
-    //%block="HuskyLens %command current algorithm data as No. %data model of SD card"
-    //% weight=24
-    //% advanced=true
-    //% data.min=0 data.max=5
     async saveModelToTFCard(command: HUSKYLENSMode, data: number): Promise<void> {
         if (!this.mbitMore.isConnected()) {
             return;
@@ -781,7 +754,7 @@ export class HuskylensProtocol {
             } else {
                 return false;
             }
-            await new Promise(resolve => setTimeout(resolve, 10));
+            // await new Promise(resolve => setTimeout(resolve, 10));
         }
         return false;
     }

@@ -16,10 +16,14 @@
   "huskylens.getNthArrowParam": "[parameter] of No. [index] arrow",
   "huskylens.getTotalByID": "number of ID [id] [objectType]",
   "huskylens.getNthBoxParamByID": "[parameter] of ID [id] No. [index] box",
+  "huskylens.getNthArrowParamByID": "[parameter] of ID [id] No. [index] arrow",
   "huskylens.learnIDAuto": "learn ID [id] automatically",
+  "huskylens.forgetAll": "forget all learning data of the current algorithm",
   "huskylens.setIDName": "set name of ID [id] as [name]",
+  "huskylens.showTextOnScreen": "show text [text] at x [x] y [y] on screen",
   "huskylens.clearText": "clear all custom texts on screen",
   "huskylens.takePhoto": "take a [type] and save to SD card",
+  "huskylens.saveModelToSD": "[command] current algorithm data as model No. [data] on SD card",
   "huskylens.menu.algorithm.face_rec": "face recognition",
   "huskylens.menu.algorithm.obj_trac": "object tracking",
   "huskylens.menu.algorithm.obj_rec": "object recognition",
@@ -39,5 +43,9 @@
   "huskylens.menu.parameterMenu2.yOrigin": "Y beginning",
   "huskylens.menu.parameterMenu2.xTarget": "X endpoint",
   "huskylens.menu.parameterMenu2.yTarget": "Y endpoint",
-  "huskylens.menu.parameterMenu3.id": "ID"
+  "huskylens.menu.parameterMenu3.id": "ID",
+  "huskylens.menu.photoTypeMenu.photo": "photo",
+  "huskylens.menu.photoTypeMenu.screen": "screenshot",
+  "huskylens.menu.commandMenu.save": "save",
+  "huskylens.menu.commandMenu.load": "load"
 }
