@@ -42,25 +42,17 @@ const COMMAND_INDEX = 4;
 const CONTENT_INDEX = 5;
 const PROTOCOL_SIZE = 6;
 
-enum Content1 {
-    //% block="X center"
+export enum Content1 {
     xCenter = 1,
-    //% block="Y center"
     yCenter = 2,
-    //% block="width"
     width = 3,
-    //% block="height"
     height = 4
 }
 
-enum Content2 {
-    //% block="X beginning"
+export enum Content2 {
     xOrigin = 1,
-    //% block="Y beginning"
     yOrigin = 2,
-    //% block="X endpoint"
     xTarget = 3,
-    //% block="Y endpoint"
     yTarget = 4
 }
 
@@ -72,16 +64,11 @@ export enum Content3 {
     height = 4
 }
 
-enum Content4 {
-    //% block="ID"
+export enum Content4 {
     ID = 5,
-    //% block="X beginning"
     xOrigin = 1,
-    //% block="Y beginning"
     yOrigin = 2,
-    //% block="X endpoint"
     xTarget = 3,
-    //% block="Y endpoint"
     yTarget = 4
 
 }
@@ -210,7 +197,17 @@ export class HuskylensProtocol {
             return;
         }
         this.writeAlgorithm(mode, protocolCommand.COMMAND_REQUEST_ALGORITHM);
-        while (!await this.wait(protocolCommand.COMMAND_RETURN_OK));
+
+        const start = Date.now();
+        while (true) {
+            if (await this.wait(protocolCommand.COMMAND_RETURN_OK)) {
+                break;
+            }
+            if (Date.now() - start > 500) {
+                // Timeout after 0.5s
+                break;
+            }
+        }
     }
 
     /**
@@ -235,8 +232,6 @@ export class HuskylensProtocol {
     /**
      * The box or arrow HuskyLens got from result appears in screen?
      */
-    //%block="HuskyLens check if %Ht is on screen from the result"
-    //% weight=78
     isAppear_s(Ht: HUSKYLENSResultType_t): boolean {
         if (!this.mbitMore.isConnected()) {
             return false;
@@ -253,8 +248,6 @@ export class HuskylensProtocol {
     /**
      * HuskyLens get the parameter of box near the screen center from result.
      */
-    //% block="HuskyLens get %data of frame closest to the center of screen from the result"
-    //% weight=77
     readBox_s(data: Content3): number {
         if (!this.mbitMore.isConnected()) {
             return 0;
@@ -281,8 +274,6 @@ export class HuskylensProtocol {
     /**
      * HuskyLens get the parameter of arrow near the screen center from result.
      */
-    //% block="HuskyLens get %data of arrow closest to the center of screen from the result"
-    //% weight=77
     readArrow_s(data: Content4): number {
         if (!this.mbitMore.isConnected()) {
             return 0;
@@ -309,8 +300,6 @@ export class HuskylensProtocol {
      * The ID Huskylens got from result has been learned before?
      * @param id to id ,eg: 1
      */
-    //% block="HuskyLens check if ID %id is learned from the result"
-    //% weight=76
     isLearned(id: number): boolean {
         if (!this.mbitMore.isConnected()) {
             return false;
@@ -323,8 +312,6 @@ export class HuskylensProtocol {
      * The box or arrow corresponding to ID obtained by HuskyLens from result appears in screen？
      * @param id to id ,eg: 1
      */
-    //% block="HuskyLens check if ID %id %Ht is on screen from the result"
-    //% weight=75
     isAppear(id: number, Ht: HUSKYLENSResultType_t): boolean {
         if (!this.mbitMore.isConnected()) {
             return false;
@@ -342,8 +329,6 @@ export class HuskylensProtocol {
      * HuskyLens get the parameter of the box corresponding to ID from result.
      * @param id to id ,eg: 1
      */
-    //%block="HuskyLens get  $number1 of ID $id frame from the result"
-    //% weight=65
     readeBox(id: number, number1: Content1): number {
         if (!this.mbitMore.isConnected()) {
             return 0;
@@ -372,9 +357,6 @@ export class HuskylensProtocol {
     * HuskyLens get the parameter of the arrow corresponding to ID from result.
     * @param id to id ,eg: 1
     */
-
-    //%block="HuskyLens get $number1 of ID $id arrow from the result"
-    //% weight=60
     readeArrow(id: number, number1: Content2): number {
         if (!this.mbitMore.isConnected()) {
             return 0;
@@ -799,14 +781,13 @@ export class HuskylensProtocol {
     async wait(command = 0) {
         if (!this.mbitMore.isConnected())
         {
-            return false;
+            return true;
         }
         this.timerBegin();
         while (!this.timerAvailable()) {
             if (await this.protocolAvailable()) {
                 if (command) {
                     if (this.husky_lens_protocol_read_begin(command)) {
-                        // serial.writeNumber(0);
                         return true;
                     }
                 } else {
@@ -815,7 +796,6 @@ export class HuskylensProtocol {
             } else {
                 return false;
             }
-            await new Promise(resolve => setTimeout(resolve, 100));
         }
         return false;
     }
@@ -841,14 +821,15 @@ export class HuskylensProtocol {
         return (Date.now() - this.timeOutTimer > this.timeOutDuration);
     }
 
-    m_i = 16;
     async protocolAvailable() {
         if (!this.mbitMore.isConnected())
         {
             return false;
         }
-        this.waitingForRead = true;
-        this.write(new Uint8Array([0x32, 0, 16]));
+        if (!this.waitingForRead) {
+            this.waitingForRead = true;
+            this.write(new Uint8Array([0x32, 0, 16]));
+        }
         const start = Date.now();
         await new Promise<void>(resolve => {
             const check = () => {
@@ -861,12 +842,11 @@ export class HuskylensProtocol {
             check();
         });
         let buf = this.readBuf;
-        for (let i = this.m_i; i < 16; i++) {
+        console.log("Decoding:", buf);
+        for (let i = 0; i < 16; i++) {
             if (this.husky_lens_protocol_receive(buf[i])) {
-                this.m_i++;
                 return true;
             }
-            this.m_i++;
         }
         return false;
     }
@@ -1202,5 +1182,6 @@ export class HuskylensProtocol {
     onNotifyRead(msg: string) {
         const data = Base64Util.base64ToUint8Array(msg);
         this.readBuf = new Uint8Array(data.buffer.slice(1));
+        console.log("Read:", this.readBuf)
     }
 }
