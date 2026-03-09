@@ -8,7 +8,7 @@ This extension enables you to use the **DFRobot HuskyLens AI camera** in your pr
 
 ### 1. Flash the Micro:bit Firmware
 - Download the latest `.hex` file:
-  - 👉 [Download micro:bit firmware (binary.hex)](https://github.com/Rbel12b/scratch-huskylens/releases/download/v1.0.0/binary.hex)
+  - 👉 [Download micro:bit firmware (binary.hex)](https://github.com/PoweredBySAM/scratch-huskylens/releases/latest/download/binary.hex)
 - To program your micro:bit:
   1. Connect via USB.
   2. Drag the `.hex` file into the **MICROBIT** drive that appears.
